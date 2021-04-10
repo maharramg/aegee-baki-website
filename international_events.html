@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="img/favicon.png" />
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+
+    <title>International events</title>
+    <style>
+        * {
+            box-sizing: content-box;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        body {
+            width: 100%;
+        }
+        
+         ::-webkit-scrollbar {
+            display: none;
+        }
+        
+         ::-moz-scrollbar {
+            display: none;
+        }
+        
+         ::-o-scrollbar {
+            display: none;
+        }
+        
+        .boards:hover {
+            opacity: 0.6;
+        }
+        
+        #son {
+            padding: 0px 0;
+            background-color: rgba(0, 0, 0, 0.61);
+            color: white;
+            text-align: center;
+            font-size: 20px;
+        }
+        
+        body {
+            background: url("img/square1.png");
+            background-size: contain;
+            background-position: center;
+            background-color: rgba(133, 185, 36, 0.021);
+        }
+        
+        .p-4 {
+            background-color: rgba(38, 86, 218, 0.8);
+            color: white;
+        }
+        
+        .w-full {
+            margin-bottom: 25px;
+        }
+        
+        .time {
+            color: white;
+            font-weight: 700;
+        }
+        
+        a {
+            color: white;
+            font-style: italic;
+        }
+        
+        a:hover {
+            color: white;
+        }
+        
+        .local-photo {
+            width: 50%;
+            margin-left: 25%;
+            border-radius: 10px;
+            box-shadow: 10px -10px 10px rgba(255, 255, 255, 0.7);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 10px;
+            right: 25px;
+            font-size: 45px;
+            width: 50px;
+            height: 50px;
+            /* background-color: rgb(114, 77, 77); */
+            color: #333;
+            cursor: pointer;
+            /* outline:none; */
+            /* border: 3px solid #333; */
+            /* border-radius: 50%; */
+            transition-duration: 0.2s;
+            transition-timing-function: ease-in-out;
+            transition-property: background-color, color;
+        }
+        
+        .back-to-top:hover,
+        .back-to-top:focus {
+            /* background-color: #333; */
+            color: rgb(14, 56, 243);
+        }
+        
+        .btnEntrance {
+            animation-duration: 0.5s;
+            animation-fill-mode: both;
+            animation-name: btnEntrance;
+        }
+        
+        @keyframes btnEntrance {
+            from {
+                opacity: 0;
+                transform: scale3d(0.3, 0.3, 0.3);
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .btnExit {
+            animation-duration: 0.25s;
+            animation-fill-mode: both;
+            animation-name: btnExit;
+        }
+        
+        @keyframes btnExit {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                transform: scale3d(0.3, 0.3, 0.3);
+            }
+        }
+        
+        @media screen and (max-width:847px) {
+            .local-photo {
+                width: 400px !important;
+                margin-left: 3%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">RTC NIS <span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/rtcnis.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>Dear AEGEEans, Have you already made plans for this spring?🌼 Have you thought about gaining professional knowledge while having fun with motivated people like you? Well we can surely say that spring is the right time to grow personally
+                            and also improve your local, because sharing is caring🤎 In collaboration with AEGEE-Academy and Network Commission of AEGEE-Europe, AEGEE-Niš is inviting you to participate in the RTC Niš: Back to the future - manage your
+                            time 🤩 Spend four amazing days in the heart of the Balkans! Sharing the best practices, learning all new skills and promoting partnership between locals are just some of the reasons why you should be part of this event! Gain
+                            more insight on local and time management and fundraising from well experienced trainers and members! ✅The fee (50 euros) includes: 🛌 Accomodation in a hostel for 3 nights 🍕 3 meals per day 📚 Sessions given by AEGEE-Academy
+                            and AEGEE members 🏙 City tour 🇪🇺 European night 👯‍♂️Social program with AEGEE-Niš <br> 📅 WHEN: 02-05.04.2020 <br> 📍WHERE: Niš, Serbia <br> 💶FEE: €50 <br> 👫🏻PAX: 20 <br> ⏳Deadline to apply: 15.03.2020 <br> 🔗APPLY HERE:
+                            <a href="https://my.aegee.eu/events/rtc-nis-back-to-the-future-manage-your-time">https://my.aegee.eu/events/rtc-nis-back-to-the-future-manage-your-time</a>
+                        </p>
+                        <p class="time"><i>03/03/2020</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">RTC Bergamo <span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/bergamo.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>Bergamo is especially known for its huge Ryanair HUB ✈‎‎, ‎‎‎‎‎‎‎‎‎Stracciatella ice-cream‎‎ ‎ ‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎🍦‎‎ ‎ ‎‎‎‎‎‎‎‎‎‎‎‎‎and the Venetian Walls ‎‎‎ ‎‎‎‎‎‎‎‎‎‎‎‎‎🏰‎‎ ‎ ‎‎‎‎‎‎‎‎‎‎‎‎ …but you might not know that Bergamo
+                            is also known for its construction workers 🏗. All the people from Bergamo have been told that solid and functional dwellings require teamwork. Builders. Forepeople. Plumbers. Electricians. Plasterers. Painters. Team is the
+                            key. So 🥁🥁🥁 Network Commission of AEGEE-Europe, AEGEE-Academy and AEGEE-Bergamo are thrilled to invite you to take part into this Regional Training Course where you will be given the right and proper tools to organize and
+                            shape your local as the best long-lasting building that there is! * Learn how to be part of a wonderful Team and bring it to max * You will be able to gain new skills in Team Building, Team Communication, Conflict Management...
+                            * Have a stronger impact as a team-player in your antenna! Do not miss this opportunity! Because Gorgeous Youngsters Require Team Challenges!
+                            <br> <br> What is it included?
+                            <br> * Accommodation in the city center 🛏
+                            <br> * Three meals per day 🍝
+                            <br> * Coffee breaks ☕️
+                            <br> * Training sessions delivered by AEGEE-Academy 🤓
+                            <br> * Social program 🎊
+                            <br> * City tour 🕵️‍♀️ <br><br>When 📆 : 19.03 - 22.03
+                            <br> Where 🗺: Bergamo, Italy
+                            <br> Who 👫: 20 AEGEEans
+                            <br> How much 💰: €50
+                            <br> Deadline ⌛️: 29th February 2020 Application link 🔗: <a href="https://my.aegee.eu/events/rtc-bergamo">https://my.aegee.eu/events/rtc-bergamo</a>
+                        </p>
+                        <p class="time"><i>18/03/2020</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">RTC Hatay <span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/rtchatay.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>This year AEGEE Hatay will be hosting one of the spring RTC’s. Here you will get the opportunity to learn the best cuisine of Turkey, “Döners” like you’ve never eaten before “Künefes” as you’ve never seen before. You will be also
+                            provided with real beds to sleep at. You will have the best social programs which will come with a surprise. You don’t have to worry about Hatay being on the border of Turkey, it is one of the safest cities, you can look up
+                            from the internet, the venue is going to be at Antakya, the center of Hatay. Hatay is known for its history and its great cuisine. Hatay consisted of 13 civilizations throughout its 100.000 years of history and Hatay is also
+                            known as “City of Civilizations” because it still consists of many different cultures and many different religions. There will be a booklet published about the event and Hatay for you to know it better. What is included: 🛏Accommodation
+                            in Houses 🍳Three delicious meals per day 🕺🏻Social Programmes 🤍Beautiful content 👩🏻‍🤝‍👨🏾 <br><br> NUMBER OF PAX: 15 <br>⏱ When: 19-21 March 2020 <br>📍 WHERE: Hatay, TURKEY <br>💰 FEE: 35€ <br>⏳ DEADLINE: 29 February
+                            2020 23:59 CET <br>🔗Application link: <a href="https://my.aegee.eu/events/rtc-hatay-15-year-dream">https://my.aegee.eu/events/rtc-hatay-15-year-dream</a>
+                        </p>
+                        <p class="time"><i>16/03/2020</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">OPEN CALL MINT <span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/mintopen.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>
+                            Mental health In Non-formal education and Training <br><br> #What: Training for Advanced Trainers <br> #When: 4th-11th of April 2020 <br>#Where: Tartu, Estonia <br>#Fee: €0 + travel reimbursement up to €150 <br>#ApplyAEGEEans:
+                            https://my.aegee.eu/events/mint/applications/me #Who: AEGEE-Tartu and the MINT team #WithWhom: AEGEE-Academy and Youth Development Working Group <br>#Deadline: 5th of February 2020 (23.59h) <br><br> The MINT project team, in
+                            collaboration with AEGEE-Tartu is organising a 7-day long training course on the topic of Mental Health. MINT aims to train participants - who are trainers - on acquiring a mental health perspective during their work and role
+                            as a trainer. We are looking for 16 participants who are eager to acquire a mental health perspective and work on a set of guidelines on how to integrate a mental health perspective in non-formal education. As for the principalities:
+                            The course is co-funded by the European Youth Foundation. The participation fee is <b>€0,</b> travel reimbursement up to <b> €150</b> and Visa costs will be fully covered. The course will take place from the <b>4th till the 11th of April 2020.</b>                            The venue will be a quiet place near Tartu, surrounded by nature. <br><br>Don' t miss this opportunity and apply before the <b>5th of February 2020, 23.59!</b>
+                        </p>
+                        <p class="time"><i>02/03/2020</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">Carnival in Paradise Vol II<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/spain.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>
+                            Can you hear that?👂🏼 Can you hear the energy from all the people?🙌🏼☀ Can you hear the dance steps among the waves of the beaches?💃🏻🌊🌊 Yes...🎭🤹🏻‍♂🎉 Carnival In Paradise Vol II with AEGEE - Las Palmas is coming! 🎭🤹🏻‍♂🎉 AEGEE - Las Palmas
+                            brings you an opportunity to enjoy one of the best Carnival in the world. But this is not just about a carnival celebration, you will discover two of best beaches in Gran Canaria🏖, an adventure night exploring a piece of city🌌,
+                            Las Palmas de Gran Canaria, and you will surf the waves with aquatic activities🏄🏿‍♀🏄🏻‍♂ before get ready to one of the biggest carnival celebration in Maspalomas...🎊🎉 So what are you waiting for take your custome and
+                            come?🥳🤡🎭🤹🏻‍♂ What is included? 🛏Accommodation in a youth hostel (3 nights) 🍞🍅🥙🍴2 hot meals a day: Breakfast + Lunch / Dinner 🚌Transportation during the event. 🎁Activities and many surprises await you in paradise
+                            full of color, good music and a carnival atmosphere ☀🇮🇨 You, beach and the sun are the main protagonist of this event! 🇮🇨☀ <br> 📅WHEN: 12th-15th March <br> 📍WHERE: Gran Canaria, Spain <br>💶FEE:
+                            55€ + 20€ ( Optional fee for traditional Boat Party🚢 ) <br>⌛️DEADLINE: 7th February, 23:59 <br>🔗Application link:
+                            <a href="https://my.aegee.eu/events/carnival-in-paradise-vol-ii">https://my.aegee.eu/events/carnival-in-paradise-vol-ii</a> 🔹
+                        </p>
+                        <p class="time"><i>31/01/2020</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">NWM Zagreb <span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/nwmzagreb.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>
+                            🔊 AEGEE PEOPLEE 🔊 ❤️After 5 years AEGEE-Zagreb can once again proudly say that Network Meeting will be in Zagreb - the city of million hearts! ❤️ Network Commission of AEGEE-Europe and AEGEE-Zagreb joined forces and want to invite you to participate
+                            in an event that will give you an unforgettable opportunity! Experience 4 days of fun activities, best practices & knowledge sharing sessions with 30 new friends and turn Zagreb into the city of million ideas! 💰The fee includes:
+                            🛏Accommodation in a hostel in the city center 🍕3 meals per day 📚Inspiring content provided by NetCom 🗺City tour 👯‍♂️Awesome social program by AEGEE-Zagreb <br><br> 📅WHEN: 05- 08.03.2020. 23:59
+                            CET <br> 🎯WHERE: Zagreb, Croatia <br> 💰FEE: 50€ <br> 😎PAX: 30 <br>🔥Deadline to apply: 02.02.2020 <br> Application Link: <a href="https://my.aegee.eu/events/nwm-zagreb-million-hearts-million-new-ideas">https://my.aegee.eu/events/nwm-zagreb-million-hearts-million-new-ideas</a>                            <br><br> Get ready to become a part of an awesome idea factory in the heart of Croatia!
+                        </p>
+                        <p class="time"><i>25/01/2020</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">Thessaloniki<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/thessaloniki.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>
+                            Join the European School on Human Resources, in Thessaloniki, March 19-22 and develop your HR skills! European School on Human Resources aims to empower members of youth-led NGOs, involved in the field of Human Resources, to develop, implement and manage
+                            HR strategies in their organizations. At European School on Human Resources, an international team of highly skilled trainers will assist 20 motivated participants in gaining knowledge and skills in HR, which they can apply
+                            and multiply in their NGOs. The trainers are experienced in the use of non-formal education methodologies, which guarantees a playful, interactive and fun experience for you, adapting to your needs, while ensuring you’ll retain
+                            the skills acquired and be ready to apply them in practice directly after the event! European School on Human Resources wants to reach beyond the training room. During this event, you will have the opportunity to apply in practice
+                            the knowledge and skills you will have acquired. All in one, we will generate solutions to real problems and equip you with the necessary skills to effectively manage the HR activities in your organisation! 💭 Intensive international
+                            training course by AEGEE-Academy <br><br> ⏰ WHEN: 19th-22nd of March, 2020 <br>📍 WHERE: Thessaloniki, Greece <br> 👩🏼‍🤝‍👨🏽 NUMBER OF PAX: 20 <br> 💶 FEE: 55€ <br>🔗 APPLY:
+                            <a href="https://my.aegee.eu/events/es-on-hr-2020 ">https://my.aegee.eu/events/es-on-hr-2020 </a> <br> ⌛️ DEADLINE: 30th of January, 23:59
+                        </p>
+                        <p class="time"><i>21/01/2020</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">Eskishehir<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/eskishehir.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>
+                            You feel like applying for an awesome event? Then here is good news for you: AEGEE-Eskişehir is hosting a Network Meeting!🥳 Four amazing winter days with AEGEE-Eskişehir! You will have a chance to see Eskişehir preparing for the great season and this
+                            is going to be the project of your life🌺 Evaluate yourself and your AEGEE spirit✨ Apply to improve your local and become more active person in the 🤍AEGEE family🤍 💪🏼 Develop yourself and your locale 🔍 Learn different perspectives
+                            🗃 Share amazing experiences 👯‍♂️ Make unforgettable friends.. 🧩 At NWM-Eskişehir it is planned to help the Network's development through AEGEE locals and hosting other AEGEE family members🤎 What is included: 🛌 Lodging
+                            in the city 🍗 3 meals per day 📒 Incredible content from our NetCom 💃🏻🕺🏻Amazing Social Programs by AEGEE-Eskişehir 🕺🏻35 new AEGEE friends... 🦋 If you want to see Eskişehir, learn more about it and at the same time get
+                            the best insights on how to develope your local with other 35 AEGEEans, DON’T FORGET TO APPLY!💫 <br><br> 📌WHERE: Eskişehir, Turkey <br> ⏰WHEN: 20-23 February 2020 <br>👩🏽‍🤝‍👨🏾NUMBER OF PAX:
+                            35 <br>💰FEE: 35€ <br>⏳DEADLINE: 8th February 2020, 23.59 CEST <br>🔗Application link:
+                            <a href="https://my.aegee.eu/events/nwm-eskisehir-2020-dive-into-diversity">https://my.aegee.eu/events/nwm-eskisehir-2020-dive-into-diversity</a>
+                        </p>
+                        <p class="time"><i>18/01/2020</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">Her Main Y<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/hermainy.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>
+                            HerMainY is a project of AEGEE-Europe, funded by the European Youth Foundation.This training aims at increasing the knowledge and skills regarding gender mainstreaming measures in communication in local organisations. In the training you will learn practical
+                            skills on how to implement a gender perspective in your local or at an event and share this information with others.<br><br> ◾Who are we looking for:<br> ▪️Trainers who already have some experience
+                            in delivering trainings and/or have participated in a training for trainers previously ▪️Trainers who are looking to include a gender perspective into their trainings and deliver trainings on this topic in the future. <br><br>◾Topics
+                            that will be covered: <br>▪️How to include a gender perspective into trainings <br>▪️Gender Mainstreaming <br>▪️Gender-friendly communication <br>▪️Sexual orientation and gender identity and current issues in these fields <br>▪️Link
+                            between gender equality and mental health <br>▪️Creation of workshops that can be delivered on this topic <br><br>◾And additionally: City tour of Moscow Social programme from AEGEE-Moskva
+                            <br><br> 📍Where? Moscow <br> 📆When? 02/03/2020-09/03/2020 <br>❗All costs are covered <br>🔗Application link: <a href="https://my.aegee.eu/events/hermainy-training-for-trainers-on-gender-mainstreaming/applications/me ">https://my.aegee.eu/events/hermainy-training-for-trainers-on-gender-mainstreaming/applications/me </a>                            <br> ❗Application Deadline: 23/01/2020
+                        </p>
+                        <p class="time"><i>17/01/2020</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">Mascleta Your Mind<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/mascleta.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>
+                            March is a cold month, you know… so this event is the best way to warm your spirit up! Full of sound and lights, Castelló is in the middle of La Magdalena, its famous festivities. It’s the commemoration of how the current city was founded moving the city
+                            from a mountain to a fruitful and productive coast🌊
+                            <br> <br> Do you enjoy being in gathering, comfy and festive atmospheres? Does the smell of powder excite you? Are you brave and you don’t get scared easily? Would you like to stare glazing, illuminated and sonorous shows and
+                            spectacles to arouse and stimulate you? If you have answered YES to all these questions, this event is, without doubt, what you are looking for!
+                            <br> <br> What’s included? <br>🛏Accommodation in a gym
+                            <br>🍕Two meals a day
+                            <br>📚Interesting and nice workshops
+                            <br> 💥Awesome firecrackers performances
+                            <br> 🎇Amazing and interactive firework displays
+                            <br> 💃🏻🕺🏻Social programme full of cultural and crazy activities every day! <br>🎤🎵🎶And, last but not least, lots of music, light and fun!
+                            <br> <br> You are going to taste the best Spanish food and drinks, and not only the famous and typical Paella and Sangria, but much more! You are going to see some of the best fireworks and firecrackers shows ever! You are
+                            going to run among fireworks at night! And these are only few of all the incredible surprises that have been planned for you!
+                            <br> <br> If you are free during these dates, don’t hesitate and apply‼️ <br>📌WHERE: Accomodation in a gym 🏦
+                            <br> 📌WHEN: 18th to 22nd of March 📆
+                            <br> 📌FEE: 65€ all the event/ 35€ only weekend 💸
+                            <br>📌DEADLINE: 23rd of January 2020; 23:59⏳
+                            <br>📌NUMBER OF PAX: 35 participants 🙆‍♀️ <br>🔗APPLY NOW FILLING THESE FORMS: <a href="https://forms.gle/h7SYz16qferfUHYi9
+                            https://my.aegee.eu/events/mascleta-your-mind-open-your-eyes-and-feel-the-gaiata-spirit-volv">https://forms.gle/h7SYz16qferfUHYi9
+                                https://my.aegee.eu/events/mascleta-your-mind-open-your-eyes-and-feel-the-gaiata-spirit-volv</a>
+
+                        </p>
+                        <p class="time"><i>11/01/2020</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">Grodno FORTune<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/grodno.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>
+                            It all started three years ago… Brave and a little bit crazy team of AEGEE-Grodno decided to reveal one of the most exciting mysteries in the Eastern Europe. And now it’s time to move forward and show you something new and special. <br>                            Hey you, on the other side! It is time to make your mind and take a trip to a wonderland! Your destination is Grodno, a city right on the border with Poland and Lithuania. Why Grodno FORTune, you may ask. For sure you’re acquainted
+                            with the Fort Boyard show. So now we invite YOU to go through a real quest, challenge yourself and find the treasure of Belarus (and get some other prizes). For that you need to participate in amusing activities of Grodno FORTune:
+                            <br> 🗝 Quizzes and quests 🇧🇾 Interactive workshops on Belarusian culture and not only
+                            <br> ☀️Maslenitsa celebration (a holiday for seeing off winter and welcoming spring with traditional games) <br> 🎞Historical reconstruction club and archery training
+                            <br> 🕺🏻Dancing workshops
+                            <br> 💥and many more... And of course:
+                            <br> 🥘Belarusian welcome evening with homemade food 🇪🇺European Night
+                            <br> 🧖🏼Sauna party
+                            <br> 💃🏻Amazing neon party Are you thrilled? Then you also should know that the participation fee is just €85 and it includes:
+                            <br>🥪2 delicious meals per day
+                            <br> 🏡A huge cozy house with sauna and billiards! (AEGEE-Grodno is well-known for the comfortable accommodation)
+                            <br> 🚌Local transportation
+                            <br> 🧩City Tour & Games
+                            <br> 📚All necessary materials for the sessions
+                            <br> 👩🏻‍🤝‍👨🏽Social program <br>📍WHERE: Grodno, Belarus
+                            <br> 🕰WHEN: 27.02.2020 - 02.03.2020
+                            <br> 👩🏽‍🤝‍👨🏻NUMBER OF PAX: 15
+                            <br> 💶FEE: 85€
+                            <br> ⏳DEADLINE: 15th January 2020, 23:59
+                            <br> 🔗APPLICATION LINK: <a href="https://my.aegee.eu/events/grodno-fortune">https://my.aegee.eu/events/grodno-fortune</a>
+
+                        </p>
+                        <p class="time"><i>04/01/2020</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">Valencia On Fire<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/valencia.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>
+                            DO YOU WANT TO ENJOY ONE OF THE MOST FAMOUS FESTIVALS IN THE WORLD?🎉💥💃🏼😏 Fallas - one of the few festivals in the world recognised as s Human Cultural heritage by UNESCO. During the festival Valencia becomes like a big museum. You will enjoy gunpower
+                            runs in Valencian blood, the noisy “Mascleta”, the best Fireworks in the world, displays, music bands, artistic and colourful lighting shows, street performances, parades… Taste the typical “water”, paellas and discover the
+                            beautiful city with architecture in all of its types, dry river where you can sleep and sunbath, beaches, and many other beauties!
+                            <br><br> Without a shadow of a doubt, this is the most spectacular, complete local festival on the Earth!
+                            <br><br> What is included:
+                            <br>🛏 Accomodation in a GYM
+                            <br>🍔 2 meals per day
+                            <br>🥳 AEGEE activities
+                            <br>🏛 Cultural visits
+                            <br>🏙 City tour
+                            <br>🦹🏻‍♀️ Fallas tour
+                            <br>💃🏻 Party
+                            <br>🍽 Tasting traditional Valencian food
+                            <br>💥 Fireworks shows at night
+                            <br>🤟🏼 And many other things
+                            <br><br> 5 days full of happiness, parties, music, fire and many other things! And remember, <br><br>WHAT HAPPENS IN FALLAS STAYS IN FALLAS!!! <br><br>📍WHERE: Valencia
+                            <br>🕰 WHEN: 15.03.2020 - 20.03.2020 👩🏻‍🤝‍👨🏼 NUMBER OF PAX: 35
+                            <br>💶 FEE: 100€
+                            <br>⏳ DEADLINE: 13th January 2020, 23:59<br> 🔗Link to apply: <a href="https://docs.google.com/forms/d/e/1FAIpQLScmsqUrBiqgxCizqem_vK4tr1Py5vj9P30JGVYY4k70KphJxg/viewform?usp=sf_link 
+https://my.aegee.eu/events/valencia-is-on-fire">https://docs.google.com/forms/d/e/1FAIpQLScmsqUrBiqgxCizqem_vK4tr1Py5vj9P30JGVYY4k70KphJxg/viewform?usp=sf_link 
+    https://my.aegee.eu/events/valencia-is-on-fire</a>
+
+
+                        </p>
+                        <p class="time"><i>02/01/2020</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">Superb Beauties Vol.<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/superb.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>
+                            We are glad to announce the second edition of fantastic Superb Beauties 💥💥💥 The event will take place in beautiful city, the Superb Genova and it will be epic 💣💣💣 A lot of AEGEE-Spirit is waiting for you!
+                            <br> <br> What the Fee includes:
+                            <br>🛏 Accomodation in a gym
+                            <br> 🥓 Breakfast + 1 warm meal per day
+                            <br> 🏛 City tour and entry to the Real Palace of Genoa
+                            <br> 🛤 Visit to beautiful Nervi and its parks!
+                            <br> 🏞 Visit to Boccadasse, the most charming district in Genoa!
+                            <br> 🍻 Pub Crawl full of fun!
+                            <br> 🎈 Amazing parties for Birthday and European Night! <br> 🕑WHEN: 28.02.2020-02.03.2020
+                            <br>💶FEE: 50
+                            <br>👫PAX: 30 <br>⏳DEADLINE: 6th January 2020, 23:59
+                            <br> 🔗APPLY: <a href="https://my.aegee.eu/events/superb-beauties
+                            ">https://my.aegee.eu/events/superb-beauties
+                        </a>
+
+                        </p>
+                        <p class="time"><i>29/12/2019</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">Dancing in the snow<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/dancinginthesnow.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>
+                            <br> ❄️Conquer steepest slopes of Gudauri🏂 <br>❄️Be one of 15 AEGEEans <br>❄️Disappear in the mountains of Georgia <br>❄️ With Georgian wine and cuisine🍷 <br>❄️get in touch with Georgian culture. <br>❄️experience Georgia
+                            with high adrenaline.
+                            <br><br> Georgia - the country of mountains, snow and extreme. 📢For all, who want to have fun this winter and experience Georgia with its unique culture. AEGEE-Tbilisi invites you to ski in the best ski resort in Georgia and
+                            one of the best in whole Europe. AEGEE-Tbilisi invites you in Gudauri for this winter event. You will go back with unforgettable memories and an energy, which will follow you till the Summer university😉 🏔️Spend your winter
+                            holidays in high snowy mountains, feel the smell of skiing from high sloping down trace. Let the ski resort take you somewhere endlessnessly white world full of adrenaline and extreme. 🍷first day of the event you are going
+                            to have a Georgian feast, taste worldwide known Georgian traditional wine and walk under the historical architectural buildings from different periods, see the view of historic capital - Tbilisi. 🎊Besides the nature every
+                            day of your travel will be full of cultural exchange and for sure AEGEE party spirit. The organizing team of AEGEE-Tbilisi will create the best program for you to make sure that you will spend the coolest time in Georgia. 📌Take
+                            a look what you will be provided for 360€. Fee includes: 🛌 1 night accommodation in Tbilisi 🇬🇪 Tbilisi City Tour 🛁 Historic Sulfur bathes (Optional Fee) 🍷 Wine tasting 🚌 Transportation: Tbilisi – Gudauri – Tbilisi 🛌
+                            6 nights / 7 days accommodation in Gudauri 🥟 Two meals per day ⛷ Full ski/snowboard equipment (snowboard or ski) 🎿Free unlimited ski tickets /Skipass (7 days) 💥 Never-ending social nights 💃🏻🕺🏻 Crazy European Night 🎶
+                            Georgian language and song lesson
+                            <br><br> Don't lose the chance to visit one of the most hospitable countries in Europe. <br>⏱WHEN: 7-14th February, 2020
+                            <br>📍WHERE: Gudauri, Tbilisi
+                            <br>💶FEE: 360€
+                            <br>⌛️DEADLINE: 10th January 2020, 23:59
+                            <br>🔗Apply via Google form : <a href="https://docs.google.com/forms/d/e/1FAIpQLScWokIkDyJJsEX5pjMclWudbGK4nutgdjoXN3fvhf7HiMB17g/viewform?vc=0&c=0&w=1
+">https://docs.google.com/forms/d/e/1FAIpQLScWokIkDyJJsEX5pjMclWudbGK4nutgdjoXN3fvhf7HiMB17g/viewform?vc=0&c=0&w=1
+</a>
+                            <br><br> Only 15 places so hurry up!
+
+                        </p>
+                        <p class="time"><i>21/12/2019</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">EPM 2020<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/barcel.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>
+                            #EPMBarcelona2020 #NoOneLeftBehind #AEGEE AEGEE-Barcelona invites you to take part in the annual European Planning Meeting, No One Left Behind! It will take place in Barcelona, from the 5th till the 9th of February 2020. This is a special EPM, as we are
+                            going to draft the Action Agenda of the new Strategic Plan that we just voted in the last Agora Salerno. And if this just wasn't enough reason to apply, we're going to have an amazing conference on Social Inclusion, in which
+                            we will deepen in three different branches: Youth Participation, Gender Equality and Mental Health. But I don't know, I never attended a European/Statutory event... And I don't know that much about Social Inclusion… Don't worry,
+                            things will be explained, all you need is motivation and willingness to learn and speak up your voice! If you have experience and/or expertise on Social Inclusion, strategy or management, you're also super welcome! Don't hesitate
+                            to apply to come and visit the beautiful city of Barcelona, engage in super interesting discussions and be the change you want to see in the world. Our purpose: no one left behind! <br><br> ⏳DEADLINE:
+                            15th December
+                            <br> 💶FEE: 50€
+                            <br> 🔗APPLICATION LINK: <a href="https://my.aegee.eu/statutory/epm-barcelona-2020">https://my.aegee.eu/statutory/epm-barcelona-2020</a>
+                            </a>
+                            <br><br> Only 15 places so hurry up!
+
+                        </p>
+                        <p class="time"><i>12/12/2019</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">AEGEE Kruikenstad <span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/krukenstad.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>
+                            Crazy Costumes and Celebrating Cities: explore Carnaval the Dutch way! 🎉
+                            <br> <br> Are you ready for this yearly cultural celebration where societal roles are reversed? Are you ready for the biggest costume party of your life? Every winter, Tilburg becomes Kruikenstad and the entire town comes together
+                            to celebrate the Dutch 'Carnaval' and now you are all invited to join this fascinating event!
+                            <br><br> During Carnaval, normal daily life in the south of the Netherlands comes to a near stop as people come together to dance, sing and drink together day and night. Stores are closing and roads are blocked. Normal societal
+                            roles are reversed and Prince Carnaval is taking over town. Since societal roles are reversed you can be anyone you want: a firefighter, ballet dancer, banana, king or Superman! 🎉 During this five day event, you will be taught
+                            all you necessary information about this traditional Dutch celebration; you’ll be hosted in the city center where you will dress up, watch the big carnaval parade, learn you all about the history and traditions, have a city
+                            tour, traditional pub crawl with locals and most importantly, where party will continue all day and night! 🥁INCLUDED: <br><br>🛌Accommodation
+                            <br>🥨Two meals per day (breakfast and dinner) <br>🚌Transportation within the city
+                            <br>💃🏻Amazing activities
+                            <br>👯‍♀️Traditional celebrations
+                            <br> 🍺Traditional pubcrawl with locals (entrance and some drinks) <br>⏰WHEN: 20th - 24th of February, 2020
+                            <br> 💶FEE: €45
+                            <br> 🔺EXTRA FEE: €11 (for the official Kruikenstad scarf that everyone’s wearing) <br>👫PAX: 15
+                            <br> ⏳DEADLINE: 15th of December 2019 <br>🔗HOW TO APPLY: MyAEGEE: <a href="https://my.aegee.eu/events/Crazy-Costumes-and-Celebrating-Cities-2020
+                            Google Form: https://forms.gle/akv27fbE1JjLMV9H6">https://my.aegee.eu/events/Crazy-Costumes-and-Celebrating-Cities-2020
+                            Google Form: https://forms.gle/akv27fbE1JjLMV9H6</a>
+                        </p>
+                        <p class="time"><i>29/11/2019</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">AEGEE Amsterdam <span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/amsterdamaege.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>
+                            Traveling can be fun and exciting, but it can also be quite exhausting and stressful. Therefore, AEGEE-Amsterdam would like to organise: "Tranquility in the City: Get Less From Stress", an event focused on showing you Amsterdam with a bit of a slower
+                            mindset🤩 Let yourself be enchanted by annual Light Festival, where the lights come to life and turn the dark winter nights warm and bright. Unwind in peaceful and serene open green spaces and enjoy the view of the lovely picturesque
+                            houses🌆
+                            <br><br> As the theme of this event will be: "Tranquility in the City: Get Less From Stress", workshops will focus on the same theme. Hereby you can think of topics such as: overall mental health and / or how to cope with stress.
+                            <br><br> When joining this event you are offered:<br><br> 🛏 Accomodation
+                            <br>🧁 Breakfast + 1 meal a day (+ going out for dinner once)
+                            <br>✏️Workshops
+                            <br> 🚌 City tour
+                            <br> 🧘🏻‍♀️ Yoga / meditation activity
+                            <br> 🤸🏻‍♂️ Other relaxing activities ✅ and much more! <br><br>📍WHERE: Amsterdam, The Netherlands ⏱WHEN: 09.01.2020-13.01.2020
+                            <br>👫NUMBER OF PAX: 20
+                            <br>💶FEE: 94€
+                            <br>‼️DEADLINE: 9th December 2019, 23:59 <br>🔗Application link: <a href=" https://my.aegee.eu/events/50"> https://my.aegee.eu/events/50</a>
+
+                        </p>
+                        <p class="time"><i>23/11/2019</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">Salorno Summer University <span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/salorno.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>
+                            Hello dear AEGEEans!✨ Did you miss AEGEE-Salerno Summer University?🏖 Did you miss the chance to participate to Agora Salerno?💥 Do you just want to make a new, amazing experience? 💫 🥂Are you ready to begin the 2020 with 25 new friends from all over
+                            Europe?🍾 🎊Here is the perfect solution for you! AEGEE-Salerno is happy to announce NON SOLO SOLE – Winter Edition🎊
+                            <br><br> From the 28th of December to the 2nd of January you’ll have the chance to discover all the beauties and traditions of Salerno! This wonderful event will bring a little bit of SUmmer under the beautiful Christmas Lights
+                            and all Christmas spirit in just one week!
+                            <br><br> What’s included:
+                            <br>🛏Accommodation in Hostel in the Historical Centre of Salerno
+                            <br>🚌Transports
+                            <br>🍝Two meals per day
+                            <br>📝Ceramic workshops, City Tour, Hiking…and more!!
+                            <br> 🍕Traditional Food&Drinks
+                            <br>🕺🏻Parties <br><br>📍WHERE: Salerno, Italy
+                            <br>👫NUMBER OF PAX: 25
+                            <br> 🧭WHEN: 28th December - 2nd January <br>💶FEE: 170€ <br>‼️DEADLINE TO APPLY: 28th November 11:59 p.m. CET‼️ <br><br>For apply follow this link: <a href="https://my.aegee.eu/events/NYE-Salerno-2019 ">https://my.aegee.eu/events/NYE-Salerno-2019 </a>
+                            <br><br> 🔺For any doubt/information write us!
+
+                        </p>
+                        <p class="time"><i>18/11/2019</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">Ulrech<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/Ulrec.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>To discover Dutch legacy and start 2020 with AEGEE-Utrecht, continue reading! 🌏 What happens in Utrecht? Doubting where to best spend your New Year's eve? Why not in the beautiful Dutch city of Utrecht? Splash into 2019 by diving
+                            into the Nordic Sea and join in with the coolest Dutch New Year’s traditions. Escape Utrecht during an epic game, discover Dutch legacy, come ice skating and explore Amsterdam! 🏚️ Spending your free time in Utrecht will be
+                            super easy, as you will be staying supercomfy in the city centre in a hostel with real beds. 🍕 Besides the 3 meals provided every day, you will also make and try a lot of different typical Dutch snacks. 🍻 Of course you will
+                            explore the nightlife in Utrecht besides New Years Eve. Expect some typical Dutch drinks, games and fun! 📷 You will be offered an optional trip to the beautiful capital Amsterdam, including a city tour and free time, and some
+                            ice skating in a breathtaking sceneric location in Utrecht, for only 22 euros. 🔺 Practical tip: bring your swimwear!
+                            <br><br> To summarize:
+                            <br>🔥 Five nights in a hostel in the city centre
+                            <br> 🔥 Epic New Years Party 🔥 Escaping game in Utrecht
+                            <br>🔥 Traditional New Year’s dive into the Nordic Sea (including getting your very own orange hat!)
+                            <br>🔥 Making your very own Dutch meal
+                            <br> 🔥 Trying local food and traditions
+                            <br> 🔥 Escape room about Dutch history and legacy
+                            <br> 🔥 Optional tour to Amsterdam and ice skating in Utrecht
+                            <br> 🔥 Lot’s of fun<br><br> 📍 WHERE: Utrecht, the Netherlands <br>⏰ WHEN: 29 December - 3 January <br>💶 FEE: €165 ‼️+22€ optional for Amsterdam and ice skating
+                            <br> ⏳ DEADLINE: 19th of November 23:59 ‼️Before application contact us <br>🚨APPLICATION Apply at My AEGEE: <a href="  https://my.aegee.eu/events/NYEWhathappensinUtrecht">  https://my.aegee.eu/events/NYEWhathappensinUtrecht</a>
+                            <br> And fill in this Google Form: <a href=" https://forms.gle/kr5NxoFvpd3P63Ee8"> https://forms.gle/kr5NxoFvpd3P63Ee8</a> <br> You have to fill in both to get accepted!
+
+
+                        </p>
+                        <p class="time"><i>15/11/2019</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">Midnight Kissing in Paris Vol.3<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/parismid.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>Your romantic soul was waiting for it, your inner party-animal was imaging it, your stomach was craving for it and here it comes.... After the huge success of the previous NYE and many many demands to organize it again, AEGEE-Paris
+                            is proud to introduce you the New Year Eve Event, Midnight Kissing in Paris Vol.3 🗼😍 From the 28th of December till the 2nd of January, join AEGEE-Paris team in wonderful, amazing, incredible city of Paris ! 🥰 This wonderful
+                            event will bring you to the most romantic journey of your life and will show you incredible places of Paris, the city of love, the city of lights 🌌 What’s included: ✅ Accomodation in hostel in the center of Paris ✅ Two meals
+                            per day ✅ Louvre museum, Eiffel Tower, city tours and more activities during the day ✅ An amazing social program including pub crawl, gymkhana and unique Parisian clubs ✅ Unforgettable NYE Party ✅ Workshops about French language
+                            and French food and French flirting ✅ Transportation during the totality of the event And.... A LOT OF SURPRISES 🙈😎 !!! Don’t be shy and apply, AEGEE-Paris needs you to make the event unforgettable 🤩 ⏱WHEN: 28.12.2019 -
+                            02.01.2020
+                            <br><br> 📍WHERE: Paris, France
+                            <br> 👫NUMBER OF PAX: 18
+                            <br> ⏳DEADLINE: 10 November 2019, 23:59
+                            <br> 💶FEE: 250€ <br>❗️OPTIONAL FEE 1 : 25 Euros for NYE Diner + Top of the Eiffel Tower
+                            <br>❗️OPTIONAL FEE 2 : 17 Euros for Louvre museum ONLY for Non-EU citizens and people over 25 years old. For EU citizens under 25 years old, the museum is free entrance. ‼️Before application contact ER responsible of AEGEE-Bakı.<br><br>                            🔗Link for application: <a href="https://my.aegee.eu/events/parisnewyeareve3">https://my.aegee.eu/events/parisnewyeareve3</a>
+                        </p>
+                        <p class="time"><i>05/11/2019</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">New Year Party<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/rusparty.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>Welcome the brand new NYE from AEGEE-Moskva and AEGEE-Sankt-Peterburg!✨ New Year for Russians is a sacred holiday spent with the closest people, so this year you are invited to celebrate the cutest holiday in big AEGEE-family complemented
+                            by Russian hospitality. So what it’s gonna be - ordinary new year at home or pure winter adventure? Spice up your winter with the mixture of:
+                            <br> 🏰 Imperial palaces of 19th century & Modern city vibes 🌃
+                            <br> 🎨 Breathtaking Hermitage & Hot wine on fairs🍷
+                            <br> ☃️ Typical (and not really) winter activities & Banya 😍
+                            <br> 💃🕺 Authentic dressed ball & Local parties 🎉
+                            <br> ⛸ Ice-skating & Legendary Sankt-Peterburg pub crawl🍹🍻
+                            <br> 👫 20+ new friends 👭 🎆 Fireworks & more other surprises... <br> <br>🎁Bonus: ice-skating, illumination, fireworks, hot wine on fairs, New Year spirit and 20 new friends. 🔹Optional fee – 15 Euro
+                            <br> <br> And, of course, True Russian Salad - the main new year dish!✨✨✨✨✨✨✨✨ Don’t miss a chance to explore two of Russian biggest cities, take a closer look at Russian culture, and, by the way, celebrate the holiday!🤩 <br><br>                            ⏱WHEN: 28.12.2019 - 01.05.2020
+                            <br> 📍WHERE: Moscow and Saint-Petersburg, Russia
+                            <br> 💶FEE: €235
+                            <br> 👫NUMBER OF PAX: 20
+                            <br> ⏳DEADLINE: 9 November 2019, 23:59 ‼️Before application contact External Relations responsible of AEGEE-Bakı <br>🔗Link for application: <a href="my.aegee.eu/events/russian-salad">my.aegee.eu/events/russian-salad</a>
+                        </p>
+                        <p class="time"><i>03/11/2019</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">From White to Purple<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/slovenia.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>Roses are red, violets are blue... ready to get purple? AEGEE-Maribor is waiting for you! 💜
+                            <br><br> One of the most known winter events in AEGEE network is back!🥳 For the 13th time, AEGEE-Maribor is gonna to show you just how amazing Slovenia is. From the highest peaks of Pohorje to the deepest wine cellar of Maribor,
+                            you're gonning to see it all. And for the grand finals a rooftop club in Maribor is planned, so you'll be able to experience NYE of your lifetime🤩🌲 You will enjoy:
+                            <br> 🎇 8 amazing days in Maribor
+                            <br> ⛷ 3 skiing/snowboarding days on Pohorje
+                            <br>🍷Wine tasting in one of the biggest classical wine cellars in Europe 🍲 Folklore and traditional food
+                            <br> 🧖🏻‍♀️ Spa and sauna on the first day of 2020 🇸🇮 Visiting Bled and Ljubljana
+                            <br> 🎉 7 amazing parties
+                            <br><br> Stop hearing about unforgettable parties and be a part of it. Maribor is waiting for you!
+                            <br><br> For more information please contact us🤗 <br><br>⏱WHEN: 26.12.2019 - 02.01.2020
+                            <br>📍WHERE: Maribor, Slovenia
+                            <br> 👫NUMBER OF PAX: 50
+                            <br> ⏳DEADLINE: 15 November 2019 <br>💶 FEE: 199€
+                            <br><br>‼️Skiing equipment isn’t not included in the price
+                            <br><br> APPLY HERE: <a href="https://my.aegee.eu/events/aegee-maribor-ny">https://my.aegee.eu/events/aegee-maribor-nye</a>
+                        </p>
+                        <p class="time"><i>01/11/2019</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">NWM Passau<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/nwmpassau.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>Deep in the Bavarian forests, a dream has come true - AEGEE-Passau is hosting a Network meeting from the 5th to the 8th of December 2019🥳 Come and join cosy hut in an idyllic village surrounded by beautiful nature. Walk through
+                            the streets of Passau’s fairy-tale-like old town with red cheeks and a cup of delicious Glühwein and discover the famous place where three rivers meet. While doing all that, meet amazing people and take your knowledge and skills
+                            to the next level. Also, keep your fingers crossed – you might as well be able to slide down snowy hills and practice your snowball throwing technique. And if you behaved well this year, you may also get to know someone who
+                            wants to reward you with some sweet treats 😉
+                            <br><br> This NWM will provide you with sharing best practices sessions and creative solution finding sessions for your and also other antenna, everyone knows that together we are stronger so this is why we would like to find
+                            solutions to make our antennae bigger, better and stronger. Are you the ONE for NWM Passau? - Do you want to Leave Your Footprint? - Are you interested in getting to know different people in the Network? - Do you like sharing
+                            your experiences and engaging in critical discussions? Then YOU are THE ONE!
+                            <br><br> So what you are offered?
+                            <br>🛏 Accommodation in a house in the outskirts of Passau
+                            <br>🍕 Two meals per days 📚 Awesome content by the not only one but two Netcommies
+                            <br> 👫 Social program by AEGEE-Passau <br> ⏲️ When: 5.12.19 - 8.12.19
+                            <br> 🧭 Where: Passau, Germany
+                            <br> 💰 Fee: 40€
+                            <br>⏰ Deadline: 8th November 2019, 23:59 CET ✅ <br><br>Application: https://my.aegee.eu/events/nwm-passau2019
+                            <br><br> #aegee#aegeebaku#aegeebaki#aegeepassau#passau#azerbaijan#baku
+                        </p>
+                        <p class="time"><i>27/10/2019</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+
+
+                <div class="p-4 flex-1 flex flex-col">
+
+                    <h3 class="mb-4 text-2xl ">Lost In Time<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
+                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
+                        <img src="img/lostintime.jpg" alt="" class="local-photo">
+                        <br><br>
+                        <br>
+                        <p>Ladies and gentleman, AEGEE-Novi Sad is proud to present you the third edition of Winter Madness!💫 Do you want to spend the best NYE of your life? Enter 2020 with 30 amazing AEGEEans from all over Europe? Experience the culture
+                            of welcoming New Year in another country? Answered yes to all of the questions? Then look no further, because Winter Madness: Lost in Time! is just for you🥳
+                            <br><br> New Years Eve is all about time, so this year AEGEE-Novi Sad decided to let you be Lost in Time.⏳ Experience the magical journey through different ages, grabbing the best from each! They have got it all, roaring 20s,
+                            hippie 60s, crazy 80s, modern 10s…🎶 While going on the wild cruise through history, the port will be Novi Sad, a magical city that will steal your hearts away. 🥰
+                            <br><br> Be among the 30 lucky participants that will have the chance to enjoy all the following for just 135€. 🏬 Accommodation in a hostel under a fortress 🥗 2 meals per day 🏙 City rally ⛸ Ice-skating in the Frozen forest
+                            🍷 Wine tasting and visiting a winery 🏯Visiting catacombs of our fortress and museum 🎆New Years Eve party 🍻Pub crawl 🌍 European night 🥁Many theme parties and a lot of surprises… <br><br>👫Number of PAX: 30 <br>⏱WHEN: 27
+                            December - 2 January <br>📍WHERE: Novi Sad 💶FEE: 135€ <br> ⏳DEADLINE: 30 October 2019, 23:59 📲 <br><br>Apply on the following link: https://my.aegee.eu/events/53
+                            <br><br> #azerbaijan#aegee#aegeenovisad#aegeebaki#aegeebaku#baku#newyear#aegeenewyear
+                        </p>
+                        <p class="time"><i>24/10/2019</i></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div id="son">
+        <p>© AEGEE-Bakı 2020 | Created by ESWeb</p>
+    </div>
+
+    <i class="back-to-top fas fa-chevron-circle-up"></i>
+
+
+
+    <script>
+        const backToTop = document.querySelector(".back-to-top");
+        window.addEventListener("scroll", scrollFunction);
+
+        function scrollFunction() {
+            if (window.pageYOffset > 400) {
+                if (backToTop.classList.contains("btnEntrance")) {
+                    backToTop.classList.remove("btnExit");
+                    backToTop.classList.add("btnEntrance");
+
+                }
+                backToTop.style.display = "block";
+
+            } else {
+                if (backToTop.classList.contains("btnEntrance")) {
+                    backToTop.classList.remove("btnEntrance");
+                    backToTop.classList.add("btnExit");
+
+                }
+                backToTop.style.display = "none";
+            }
+        }
+
+        backToTop.addEventListener('click', backtotop);
+
+        function backtotop() {
+
+            window.scrollTo(0, 0);
+        }
+    </script>
+    <script src="https://kit.fontawesome.com/80468dcf5f.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
