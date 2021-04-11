@@ -1,872 +1,1420 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
     <link rel="icon" type="image/png" href="img/favicon.png" />
 
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
-    <script src="https://kit.fontawesome.com/80468dcf5f.js" crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/80468dcf5f.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Local events</title>
     <style>
-        * {
-            font-family: 'Times New Roman', Times, serif;
+      * {
+        font-family: "Times New Roman", Times, serif;
+      }
+
+      .boards:hover {
+        opacity: 0.6;
+      }
+
+      body {
+        background: url("square1.png");
+        background-size: contain;
+        background-position: center;
+        background-color: rgba(226, 185, 64, 0.034);
+      }
+
+      .p-4 {
+        background-color: rgba(38, 86, 218, 0.8);
+        color: white;
+      }
+
+      .w-full {
+        margin-bottom: 25px;
+      }
+
+      .time {
+        color: white;
+        font-weight: 700;
+      }
+
+      a {
+        color: white;
+        font-style: italic;
+      }
+
+      a:hover {
+        color: white;
+      }
+
+      .local-photo {
+        width: 50%;
+        margin-left: 25%;
+        border-radius: 10px;
+        box-shadow: 10px -10px 10px rgba(255, 255, 255, 0.7);
+      }
+
+      .back-to-top {
+        position: fixed;
+        bottom: 10px;
+        right: 25px;
+        font-size: 45px;
+        width: 50px;
+        height: 50px;
+        /* background-color: rgb(114, 77, 77); */
+        color: #333;
+        cursor: pointer;
+        /* outline:none; */
+        /* border: 3px solid #333; */
+        /* border-radius: 50%; */
+        transition-duration: 0.2s;
+        transition-timing-function: ease-in-out;
+        transition-property: background-color, color;
+      }
+
+      .back-to-top:hover,
+      .back-to-top:focus {
+        /* background-color: #333; */
+        color: rgb(14, 56, 243);
+      }
+
+      .btnEntrance {
+        animation-duration: 0.5s;
+        animation-fill-mode: both;
+        animation-name: btnEntrance;
+      }
+
+      @keyframes btnEntrance {
+        from {
+          opacity: 0;
+          transform: scale3d(0.3, 0.3, 0.3);
         }
-        
-        .boards:hover {
-            opacity: 0.6;
+        to {
+          opacity: 1;
         }
-        
-        body {
-            background: url("square1.png");
-            background-size: contain;
-            background-position: center;
-            background-color: rgba(226, 185, 64, 0.034);
+      }
+
+      .btnExit {
+        animation-duration: 0.25s;
+        animation-fill-mode: both;
+        animation-name: btnExit;
+      }
+
+      @keyframes btnExit {
+        from {
+          opacity: 1;
         }
-        
-        .p-4 {
-            background-color: rgba(38, 86, 218, 0.8);
-            color: white;
+        to {
+          opacity: 0;
+          transform: scale3d(0.3, 0.3, 0.3);
         }
-        
-        .w-full {
-            margin-bottom: 25px;
-        }
-        
-        .time {
-            color: white;
-            font-weight: 700;
-        }
-        
-        a {
-            color: white;
-            font-style: italic;
-        }
-        
-        a:hover {
-            color: white;
-        }
-        
+      }
+
+      body {
+        width: 100%;
+      }
+
+      ::-webkit-scrollbar {
+        display: none;
+      }
+
+      ::-moz-scrollbar {
+        display: none;
+      }
+
+      ::-o-scrollbar {
+        display: none;
+      }
+
+      @media screen and (max-width: 847px) {
         .local-photo {
-            width: 50%;
-            margin-left: 25%;
-            border-radius: 10px;
-            box-shadow: 10px -10px 10px rgba(255, 255, 255, 0.7);
+          width: 400px !important;
+          margin-left: 0%;
         }
-        
-        .back-to-top {
-            position: fixed;
-            bottom: 10px;
-            right: 25px;
-            font-size: 45px;
-            width: 50px;
-            height: 50px;
-            /* background-color: rgb(114, 77, 77); */
-            color: #333;
-            cursor: pointer;
-            /* outline:none; */
-            /* border: 3px solid #333; */
-            /* border-radius: 50%; */
-            transition-duration: 0.2s;
-            transition-timing-function: ease-in-out;
-            transition-property: background-color, color;
-        }
-        
-        .back-to-top:hover,
-        .back-to-top:focus {
-            /* background-color: #333; */
-            color: rgb(14, 56, 243);
-        }
-        
-        .btnEntrance {
-            animation-duration: 0.5s;
-            animation-fill-mode: both;
-            animation-name: btnEntrance;
-        }
-        
-        @keyframes btnEntrance {
-            from {
-                opacity: 0;
-                transform: scale3d(0.3, 0.3, 0.3);
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        
-        .btnExit {
-            animation-duration: 0.25s;
-            animation-fill-mode: both;
-            animation-name: btnExit;
-        }
-        
-        @keyframes btnExit {
-            from {
-                opacity: 1;
-            }
-            to {
-                opacity: 0;
-                transform: scale3d(0.3, 0.3, 0.3);
-            }
-        }
-        
-        body {
-            width: 100%;
-        }
-        
-         ::-webkit-scrollbar {
-            display: none;
-        }
-        
-         ::-moz-scrollbar {
-            display: none;
-        }
-        
-         ::-o-scrollbar {
-            display: none;
-        }
-        
-        @media screen and (max-width:847px) {
-            .local-photo {
-                width: 400px !important;
-                margin-left: 0%;
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div class="container mt-5">
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">Yardım Aksiyasi<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/yardimaksiyasi.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <p> Əziz Vətəndaşlar, Zərər çəkmiş mülki əhaliyə yardım etmək məqsədilə başlatdığımız Dəstək Aksiyası'nda iştirak etmək üçün sayılı günlər qaldı(son tarix: 05.11.2020). Köməyinizi ya göstərilmiş bank hesablarına vəsaitinlərinizi köçürərək
-                            ya da digər formada (geyim, gündəlik tələbat malları, və s.) etmək istəyirsinizsə AEGEE-Bakı ilə DM/Messenger üzərindən əlaqə yarada bilərsiniz. <br><br> AZN Hesabı üçün: <br> 16 rəqəmli kod: 4169 7385 3904 9464 <br> Kartın
-                            son istifadə tarixi: 10/23 <br> Kartın sahibinin adı: SUSAN RZAYEVA <br><br> Ödəniş terminallarında (MilliÖn/EManat)<br><br> Bank xidmətləri >> Kapital Bank >> Kart hesabının artırılması >> 16 rəqəmli kod >> Nəğd pulla ödəniş
-                            >> Məbləği daxil edin >> İrəli <br><br> Xaricdə yaşayayıb, köməklik göstərmək istəyənlər üçün USD hesabımız da  mövcuddur USD Hesabı üçün: <br><br> ID: 726749 <br> Fin: 6W4NECW <br>Card holder: ELSHAD ISMAYILOV
-                        </p>
-                        <p class="time"><i>19/10/2020</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              Student Life Abroad<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/student_life.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Əziz Gənclər, <br /><br />
+                Ötən vebinarımızda xaricdə təhsil, təqaüdlər barədə müzakirə
+                apardıq və bu mövzuya uyğun olaraq "Integration to Europe: Vol
+                2, Student life abroad" adlı növbəti vebinarımızı keçirmək
+                qərarına gəldik. Bu dəfə siz müxtəlif ölkələrdə yaşayıb təhsil
+                alan həmyerlilərimizin təəssürat və təcrübələri barədə məlumat
+                alacaqsınız. <br /><br />
+                Aşağıdakı linkdən qeydiyyatdan keçmək vacibdir. <br /><br />
+                Tarix: 20/12<br />
+                Saat: 14:00<br /><br />
+                Google Meet, qeydiyyatdan keçənlərə vebinara qoşulmaq üçün link
+                e-mail vasitəsilə göndəriləcək (Google Meet Mobil tətbiqini
+                Google Play və ya AppStore'dan endirə bilərsiniz) <br />
+                🔗<a href="https://forms.gle/JJtEsFZJPNaDNZTr5"
+                  >https://forms.gle/JJtEsFZJPNaDNZTr5</a
+                >
+                <br />
+              </p>
+              <p class="time"><i>14/12/2020</i></p>
             </div>
+          </div>
         </div>
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+      </div>
 
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">Sara Recebli<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/facebooklive.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>Son ayların ən aktual problemlərindən olan COVID-19. Bəs bu virus gündəlik sosial həyatımıza necə təsir göstərir? COVID-19 və sosial problemlərə yeni yanaşmalar barədə Sara Rəcəbli ilə onlayn bağlantı zamanı məlumatlana bilərsiniz.
-                            <br> Tarix: 26.04.2020
-                            <br> Saat:19:00
-                            <br> Platforma:Facebook live
-                        </p>
-                        <p class="time"><i>23/04/2020</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              Scholarship Opportunities<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/scholar.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Əziz Gənclər, <br /><br />
+                AEGEE-Bakı və Career Guide şirkəti tərəfindən təşkil olunacaq
+                "Scholarship Opportunities" adlı vebinara sizləri dəvət edirik.
+                İştirak edəcək şəxslərin istəyini nəzərə almaq məqsədilə daha
+                çox maraqlandığınız təqaüd proqramları və ölkələri aşağıda
+                yerləşdirdiyimiz keçiddən istifadə edərək seçə və ya öz
+                təkliflərinizi irəli sürə bilərsiniz.<br />
+                <br />
+                Vebinar bu mövzuları əhatə edəcəkdir: <br />
+                <br />
+                Haqqında danışılacaq təqaüd proqramlarına kimlər müraciət edə
+                bilər? <br />
+                Qəbul almaq üçün nələr lazımdır? <br />
+                Tələblər nələrdir?<br />
+                Diqqət edilməli məqamlar hansılardır? <br />
+                <br />
+                🗣 Spiker: Fehruz Cəbrayılov, Career Guide şirkətinin əməkdaşı,
+                Erasmus + təqaüdünün qalibi. <br /><br />
+                Tarix: 06/12 <br />
+                Saat: 14:00 <br />
+                Google Meet, qeydiyyatdan keçənlərə e-mail vasitəsilə link
+                göndəriləcək (Google Meet Mobil tətbiqini Google Play və ya
+                AppStore'dan endirə bilərsiniz) <br /><br />
+                🔗Vebinada keçid linki:
+                <a href="https://forms.gle/qZX2WsHpvq6jh6nj6"
+                  >https://forms.gle/qZX2WsHpvq6jh6nj6</a
+                >
+                <br /><br />
+                Əlavə olaraq vebinarda iştirak edəcək şəxsləri Career Guide
+                şirkəti tərəfindən xüsusi endirim gözləyir. <br />
+              </p>
+              <p class="time"><i>30/10/2020</i></p>
             </div>
+          </div>
         </div>
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3 ">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col ">
+      </div>
 
-                <div class="p-4 flex-1 flex flex-col ">
-                    <h3 class="mb-0 text-2xl ">"Mədəniyyət və incəsənət: anlayış, istiqamət və cərəyanlar"<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span>
-                    </h3>
-                    <div class="mb-0 text-grey-darker text-sm flex-1 "> <br> <br>
-                        <img src="img/medeniyyet.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>Əgər incəsənətlə maraqlanırsızsa bu fürsət tam sizlikdir. 3 Aprel saat 18:00-da s.e.f d Eldar Cəfərovun təqdimatında "Mədəniyyət və incəsənət: anlayış, istiqamət və cərəyanlar" adlı Vebinara qoşulmaq üçün Smartfonunuza ZOOM mobil
-                            tətbiqini yükləməklə və ya kompyüterinizdə ZOOM saytına daxil olmaqla keçid edə bilərsiniz. <br> 🔗Android üçün link: <a href="https://play.google.com/store/apps/details?id=us.zoom.videomeetings">https://play.google.com/store/apps/details?id=us.zoom.videomeetings</a>                            <br> 🔗IOS üçün link:
-                            <a href="https://apps.apple.com/az/app/zoom-cloud-meetings/id546505307">https://apps.apple.com/az/app/zoom-cloud-meetings/id546505307</a> <br> 🔗Vebinada keçid linki: <a href="ttps://us04web.zoom.us/j/699006749?pwd=bTZXWjU2TENlc09ocDZ6U0tOUDhoQT09">https://us04web.zoom.us/j/699006749?pwd=bTZXWjU2TENlc09ocDZ6U0tOUDhoQT09</a>                            <br> Meeting ID: 699 006 749</p>
-                        <p class="time"><i>02/04/2020</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              Yardım Aksıyası<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/yardimaksiyasi.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <p>
+                Əziz Vətəndaşlar, Zərər çəkmiş mülki əhaliyə yardım etmək
+                məqsədilə başlatdığımız Dəstək Aksiyası'nda iştirak etmək üçün
+                sayılı günlər qaldı(son tarix: 05.11.2020). Köməyinizi ya
+                göstərilmiş bank hesablarına vəsaitinlərinizi köçürərək ya da
+                digər formada (geyim, gündəlik tələbat malları, və s.) etmək
+                istəyirsinizsə AEGEE-Bakı ilə DM/Messenger üzərindən əlaqə
+                yarada bilərsiniz. <br /><br />
+                AZN Hesabı üçün: <br />
+                16 rəqəmli kod: 4169 7385 3904 9464 <br />
+                Kartın son istifadə tarixi: 10/23 <br />
+                Kartın sahibinin adı: SUSAN RZAYEVA <br /><br />
+                Ödəniş terminallarında (MilliÖn/EManat)<br /><br />
+                Bank xidmətləri >> Kapital Bank >> Kart hesabının artırılması >>
+                16 rəqəmli kod >> Nəğd pulla ödəniş >> Məbləği daxil edin >>
+                İrəli <br /><br />
+                Xaricdə yaşayayıb, köməklik göstərmək istəyənlər üçün USD
+                hesabımız da  mövcuddur USD Hesabı üçün: <br /><br />
+                ID: 726749 <br />
+                Fin: 6W4NECW <br />Card holder: ELSHAD ISMAYILOV
+              </p>
+              <p class="time"><i>19/10/2020</i></p>
             </div>
+          </div>
         </div>
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">Radio Fm<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/radiofm.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>Karantində vaxtımızı necə keçirək? Kitablar?📚 Oyunlar?🎮Musiqi?🎧Hər şey çox eyni gəlir? O zaman səni çoxdandır etmədiyin bir şeyə dəvət edirik🤩 AEGEE-Bakı illər sonra "Seç FM" adlı Radio Stansiyasını📻 yenidən aktivləşdirir.
-                            Bəs burada səni nələr gözləyir? Qoşularsan, bilərsəəən! 🤪 Bunun üçün Mixlr 📱 mobil proqramını yükləyib qeydiyyatdan keçmək lazımdır. <br> 🔗Android üçün link: <a href="https://play.google.com/store/apps/details?id=com.mixlr.android">https://play.google.com/store/apps/details?id=com.mixlr.android</a>                            <br> 🔗IOS üçün link: <a href="https://apps.apple.com/az/app/mixlr-social-live-audio/id583705714">https://apps.apple.com/az/app/mixlr-social-live-audio/id583705714</a> <br> 🔗Kanala keçid: Seç FM is on Mixlr <a href="https://mixlr.com/se%C3%A7-fm">https://mixlr.com/se%C3%A7-fm</a>                            <br> ❗İLK EFİR: 25 Mart, saat 20:07
-                        </p>
-                        <p class="time"><i>22/03/2020</i></p>
-                    </div>
-
-                </div>
+      </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              Sara Recebli<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/facebooklive.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Son ayların ən aktual problemlərindən olan COVID-19. Bəs bu
+                virus gündəlik sosial həyatımıza necə təsir göstərir? COVID-19
+                və sosial problemlərə yeni yanaşmalar barədə Sara Rəcəbli ilə
+                onlayn bağlantı zamanı məlumatlana bilərsiniz. <br />
+                Tarix: 26.04.2020 <br />
+                Saat:19:00 <br />
+                Platforma:Facebook live
+              </p>
+              <p class="time"><i>23/04/2020</i></p>
             </div>
+          </div>
         </div>
-
-
-
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">Hediyye Qazan<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/hediyyeqaz.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>Aegee-Bakı Kreativ Azərbaycan və Azərbaycan Respublikası Mədəniyyət Nazirliyi tərəfindən elan olunan “Evdə qal evdə yarat!” təşəbbüsünə qoşulur! Dünya əl sənətinin, musiqisinin, ədəbiyyatının, rəssamlığının ən gözəl nümunələri
-                            məhz evdə yaradılıb. Gəlin biz də evdə olduğumuz müddətdə bu şansdan istifadə edək və yaradıcılığımızla virusla mübarizəni pozitivə fokuslanaraq gücləndirək! Evdə keçirdiyiniz vaxt ərzində yaradıcılığınızı işə salın və pozitivliyə
-                            töhfə verin! Və bu həmçinin sizə dəyərli hədiyyələr qazanmaq üçün şans yaratsın. Şərtlər çox sadədir: <br><br> 1. “Kreativ Azərbaycan” Facebook səhifəsini izlədiyinizdən əmin olun, <br> 2. Yaratdığınız işi #evdəqalevdəyarat
-                            hashtag-i ilə öz səhifənizdə paylaşın, <br> 3. Paylaşımda həmçinin “Kreativ Azərbaycan” Facebook səhifəsini tag edin. <br><br>Əgər 30 aprelə kimi sizin işiniz ən çox bəyənilən ("like" alan) işlərdən olsa, deməli qaliblərdən
-                            birisiniz və Kreativ Azərbaycan portalı və Azərbaycan Respublikası Mədəniyyət Nazirliyi tərəfindən müxtəlif maraqlı hədiyyələr sizi gözləyir. Evdə qalıb evdə yaradaraq virusa birlikdə qalib gələk! <br><br> Ətraflı məlumat üçün:
-                            <a href="https://creative.az/az/post/109">https://creative.az/az/post/109 </a> <br><br> #evdəqalevdəyarat #SayNotoCovid #creativeaz
-                        </p>
-                        <p class="time"><i>19/10/2020</i></p>
-                    </div>
-
-                </div>
+      </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-0 text-2xl">
+              "Mədəniyyət və incəsənət: anlayış, istiqamət və cərəyanlar"<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-0 text-grey-darker text-sm flex-1">
+              <br />
+              <br />
+              <img src="img/medeniyyet.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Əgər incəsənətlə maraqlanırsızsa bu fürsət tam sizlikdir. 3
+                Aprel saat 18:00-da s.e.f d Eldar Cəfərovun təqdimatında
+                "Mədəniyyət və incəsənət: anlayış, istiqamət və cərəyanlar" adlı
+                Vebinara qoşulmaq üçün Smartfonunuza ZOOM mobil tətbiqini
+                yükləməklə və ya kompyüterinizdə ZOOM saytına daxil olmaqla
+                keçid edə bilərsiniz. <br />
+                🔗Android üçün link:
+                <a
+                  href="https://play.google.com/store/apps/details?id=us.zoom.videomeetings"
+                  >https://play.google.com/store/apps/details?id=us.zoom.videomeetings</a
+                >
+                <br />
+                🔗IOS üçün link:
+                <a
+                  href="https://apps.apple.com/az/app/zoom-cloud-meetings/id546505307"
+                  >https://apps.apple.com/az/app/zoom-cloud-meetings/id546505307</a
+                >
+                <br />
+                🔗Vebinada keçid linki:
+                <a
+                  href="ttps://us04web.zoom.us/j/699006749?pwd=bTZXWjU2TENlc09ocDZ6U0tOUDhoQT09"
+                  >https://us04web.zoom.us/j/699006749?pwd=bTZXWjU2TENlc09ocDZ6U0tOUDhoQT09</a
+                >
+                <br />
+                Meeting ID: 699 006 749
+              </p>
+              <p class="time"><i>02/04/2020</i></p>
             </div>
+          </div>
         </div>
-
-
-
-
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">Stop the violence<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/stopviolence.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>Cəmiyyətdə baş verən problemlər sizi nə dərəcədə maraqlandırır? Bu problemlərlə bağlı daha yaxşı məlumatlanmaq və fikir mübadiləsi aparmaq istəyirsiniz? Elə isə, hər birinizi AEGEE-Bakının “Civic Education” İşçi Qrupunun təşkilatçılığı
-                            ilə həyata keçirilən "Stop the Violence" adlı tədbirimizə dəvət edirik. Bu mövzuya toxunulmasının səbəbi cəmiyyətimizdə bu sahədə keçirilmiş layihələrin olduqca az sayda olması və qeyd edilən mövzuda maariflənmə aparılmasının
-                            vacibliyi olmuşdur. <br> <br> ❗Tədbirdə kofe fasiləsi nəzərdə tutulmuşdur <br> 📆 15/03/2020 <br> 🕑 15:00-17:00 <br> 📍EDU Company Təhsil Mərkəzi Nizami filialı <br> 🔗 Qeydiyyat linki: <a href="https://docs.google.com/forms/d/1z2T7sq-la1ExV-9g3WWT-Q-IehOszQIEShCE9EMIQns/viewform?pli=1&edit_requested=true"> https://docs.google.com/forms/d/1z2T7sq-la1ExV-9g3WWT-Q-IehOszQIEShCE9EMIQns/viewform?pli=1&edit_requested=true</a>
-                        </p>
-                        <p class="time"><i>10/03/2020</i></p>
-                    </div>
-
-                </div>
+      </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              Radio Fm<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/radiofm.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Karantində vaxtımızı necə keçirək? Kitablar?📚
+                Oyunlar?🎮Musiqi?🎧Hər şey çox eyni gəlir? O zaman səni
+                çoxdandır etmədiyin bir şeyə dəvət edirik🤩 AEGEE-Bakı illər
+                sonra "Seç FM" adlı Radio Stansiyasını📻 yenidən aktivləşdirir.
+                Bəs burada səni nələr gözləyir? Qoşularsan, bilərsəəən! 🤪 Bunun
+                üçün Mixlr 📱 mobil proqramını yükləyib qeydiyyatdan keçmək
+                lazımdır. <br />
+                🔗Android üçün link:
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.mixlr.android"
+                  >https://play.google.com/store/apps/details?id=com.mixlr.android</a
+                >
+                <br />
+                🔗IOS üçün link:
+                <a
+                  href="https://apps.apple.com/az/app/mixlr-social-live-audio/id583705714"
+                  >https://apps.apple.com/az/app/mixlr-social-live-audio/id583705714</a
+                >
+                <br />
+                🔗Kanala keçid: Seç FM is on Mixlr
+                <a href="https://mixlr.com/se%C3%A7-fm"
+                  >https://mixlr.com/se%C3%A7-fm</a
+                >
+                <br />
+                ❗İLK EFİR: 25 Mart, saat 20:07
+              </p>
+              <p class="time"><i>22/03/2020</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">Friends<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/friends.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>Upcoming SUmmer AEGEE-Bakı welcomes you to explore the ancient and curious Caucasus, dive into the merged culture of the east and the west. This Intercultural Resting will unlock the gates of marvelous adventure, will demonstrate
-                            to you the beauties of nature, tell the secrets of fiery land. Participants will also acquire some significant skills alongside the entertainment, which would definitely be very useful in future career or life. Even if the
-                            term “Soft Skills” doesn’t sound so exciting, be sure, we have developed very interesting methods for delivering it. During the Summer University extremely funny training courses and workshops await you during. There courses
-                            will cover such topics as development of communication skills, problem solving abilities, self and social awareness, mediation, etc. And let’s don’t forget about another topic – “Local culture and history” which will be presented
-                            by dances, traditions, cuisine, museum visiting and by many other amusing activities, where you can totally feel the CaucAEGEEan Spirit! Would be a great shame coming to Azerbaijan and not enjoying its magnificent scenery,
-                            soooo be prepared to plunge the history and culture of two more cities! And one more thing we are certain you will be amazed – PARTIES ALL NIGHTS! Cut a long story short, don’t miss this chance and let's be F.R.I.E.N.D.S!
-                        </p>
-                        <p class="time"><i>9/03/2020</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              Hediyye Qazan<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/hediyyeqaz.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Aegee-Bakı Kreativ Azərbaycan və Azərbaycan Respublikası
+                Mədəniyyət Nazirliyi tərəfindən elan olunan “Evdə qal evdə
+                yarat!” təşəbbüsünə qoşulur! Dünya əl sənətinin, musiqisinin,
+                ədəbiyyatının, rəssamlığının ən gözəl nümunələri məhz evdə
+                yaradılıb. Gəlin biz də evdə olduğumuz müddətdə bu şansdan
+                istifadə edək və yaradıcılığımızla virusla mübarizəni pozitivə
+                fokuslanaraq gücləndirək! Evdə keçirdiyiniz vaxt ərzində
+                yaradıcılığınızı işə salın və pozitivliyə töhfə verin! Və bu
+                həmçinin sizə dəyərli hədiyyələr qazanmaq üçün şans yaratsın.
+                Şərtlər çox sadədir: <br /><br />
+                1. “Kreativ Azərbaycan” Facebook səhifəsini izlədiyinizdən əmin
+                olun, <br />
+                2. Yaratdığınız işi #evdəqalevdəyarat hashtag-i ilə öz
+                səhifənizdə paylaşın, <br />
+                3. Paylaşımda həmçinin “Kreativ Azərbaycan” Facebook səhifəsini
+                tag edin. <br /><br />Əgər 30 aprelə kimi sizin işiniz ən çox
+                bəyənilən ("like" alan) işlərdən olsa, deməli qaliblərdən
+                birisiniz və Kreativ Azərbaycan portalı və Azərbaycan
+                Respublikası Mədəniyyət Nazirliyi tərəfindən müxtəlif maraqlı
+                hədiyyələr sizi gözləyir. Evdə qalıb evdə yaradaraq virusa
+                birlikdə qalib gələk! <br /><br />
+                Ətraflı məlumat üçün:
+                <a href="https://creative.az/az/post/109"
+                  >https://creative.az/az/post/109
+                </a>
+                <br /><br />
+                #evdəqalevdəyarat #SayNotoCovid #creativeaz
+              </p>
+              <p class="time"><i>19/10/2020</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">Baku City Academy<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/bakucityacademy.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>AEGEE-Bakı davamlı olaraq üzvlərini düşünərək, onların bilik və bacarıqlarının artırılması məqsədilə müxtəlif layihələr həyata keçirir. Lakin bununla kifayətlənməyib, sizin dil biliklərinizin inkişafı üçün Baku City Academy mərkəzi
-                            ilə əməkdaşlıq çərçivəsində AEGEE-Bakı üzvlərinə xüsusi endirim etmək qərarına gəldik. Belə ki, siz Baku City Academy'də istədiyiniz dil kursuna yazılarkən təşkilatımıza üzv olduğunuzu bildirərək <b>15% Endirimdən </b> yararlana
-                            bilərsiniz.
-                        </p>
-                        <p class="time"><i>29/02/2020</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              Stop the violence<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/stopviolence.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Cəmiyyətdə baş verən problemlər sizi nə dərəcədə maraqlandırır?
+                Bu problemlərlə bağlı daha yaxşı məlumatlanmaq və fikir
+                mübadiləsi aparmaq istəyirsiniz? Elə isə, hər birinizi
+                AEGEE-Bakının “Civic Education” İşçi Qrupunun təşkilatçılığı ilə
+                həyata keçirilən "Stop the Violence" adlı tədbirimizə dəvət
+                edirik. Bu mövzuya toxunulmasının səbəbi cəmiyyətimizdə bu
+                sahədə keçirilmiş layihələrin olduqca az sayda olması və qeyd
+                edilən mövzuda maariflənmə aparılmasının vacibliyi olmuşdur.
+                <br />
+                <br />
+                ❗Tədbirdə kofe fasiləsi nəzərdə tutulmuşdur <br />
+                📆 15/03/2020 <br />
+                🕑 15:00-17:00 <br />
+                📍EDU Company Təhsil Mərkəzi Nizami filialı <br />
+                🔗 Qeydiyyat linki:
+                <a
+                  href="https://docs.google.com/forms/d/1z2T7sq-la1ExV-9g3WWT-Q-IehOszQIEShCE9EMIQns/viewform?pli=1&edit_requested=true"
+                >
+                  https://docs.google.com/forms/d/1z2T7sq-la1ExV-9g3WWT-Q-IehOszQIEShCE9EMIQns/viewform?pli=1&edit_requested=true</a
+                >
+              </p>
+              <p class="time"><i>10/03/2020</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">Conversation Club<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/conversationclub.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>İngilis dili biliklərin nə qədər yaxşıdır?🧐 Danışılan mövzuları rahatlıqla anlayıb, fikrini sərbəst izah edə bilirsən❓ Cavabını təxmin etdik 🔍 Hər kəsin özünəməxsus danışıq tərzi olduğundan çox vaxt digərlərini anlamaqda çətinlik
-                            çəkirik. Bəs bu çətinliyi aradan qaldırmağa nə deyirsən, Dostum?😉 Sizə ingilis dili biliyinizi, ən əsası da danışıq və eşitmək qabiliyyətinizi inkişaf etdirmək üçün AEGEE-Bakının "Language & Culture" İşçi Qrupunun təşkilatçılığı
-                            ilə "English Conversation"a dəvət edirik 🤩 <br> 📆 29.02.2020 <br> 🕑: 12:00 <br> 📍: DataSoCool ( Dədə Qorqud parkının arxası, Univerium tələbə yataqxanasının yanı, 37 Bakıxanov) <br> 🔗: Qeydiyyat linki: <a href="https://forms.gle/5owfXsuh5pHwXU749">https://forms.gle/5owfXsuh5pHwXU749</a>                            <br> İştirak <b>ÖDƏNİŞSİZDİR</b> <br> Qatılmaq üçün minimal səviyyə: <i>Pre-Intermediate</i>
-                        </p>
-                        <p class="time"><i>28/02/2020</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              Friends<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/friends.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Upcoming SUmmer AEGEE-Bakı welcomes you to explore the ancient
+                and curious Caucasus, dive into the merged culture of the east
+                and the west. This Intercultural Resting will unlock the gates
+                of marvelous adventure, will demonstrate to you the beauties of
+                nature, tell the secrets of fiery land. Participants will also
+                acquire some significant skills alongside the entertainment,
+                which would definitely be very useful in future career or life.
+                Even if the term “Soft Skills” doesn’t sound so exciting, be
+                sure, we have developed very interesting methods for delivering
+                it. During the Summer University extremely funny training
+                courses and workshops await you during. There courses will cover
+                such topics as development of communication skills, problem
+                solving abilities, self and social awareness, mediation, etc.
+                And let’s don’t forget about another topic – “Local culture and
+                history” which will be presented by dances, traditions, cuisine,
+                museum visiting and by many other amusing activities, where you
+                can totally feel the CaucAEGEEan Spirit! Would be a great shame
+                coming to Azerbaijan and not enjoying its magnificent scenery,
+                soooo be prepared to plunge the history and culture of two more
+                cities! And one more thing we are certain you will be amazed –
+                PARTIES ALL NIGHTS! Cut a long story short, don’t miss this
+                chance and let's be F.R.I.E.N.D.S!
+              </p>
+              <p class="time"><i>9/03/2020</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-
-
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">Joker Party<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/jokerparty.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>We are very happy to announce that students who are AEGEE-Bakı members will get a special discount for the standard tickets! The Four Group will serve the students to entertain at upcoming party in a way that they've never done!
-                            Cannot wait more?! So, come and pick your tickets up for party to chill and energize! Remember, everyone needs energy, but you deserve more! <br><br> For MORE INFO contact: instagram.com/slhzdelcn
-                        </p>
-                        <p class="time"><i>25/02/2020</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              Baku City Academy<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/bakucityacademy.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                AEGEE-Bakı davamlı olaraq üzvlərini düşünərək, onların bilik və
+                bacarıqlarının artırılması məqsədilə müxtəlif layihələr həyata
+                keçirir. Lakin bununla kifayətlənməyib, sizin dil biliklərinizin
+                inkişafı üçün Baku City Academy mərkəzi ilə əməkdaşlıq
+                çərçivəsində AEGEE-Bakı üzvlərinə xüsusi endirim etmək qərarına
+                gəldik. Belə ki, siz Baku City Academy'də istədiyiniz dil
+                kursuna yazılarkən təşkilatımıza üzv olduğunuzu bildirərək
+                <b>15% Endirimdən </b> yararlana bilərsiniz.
+              </p>
+              <p class="time"><i>29/02/2020</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-
-
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">Böyük Britaniya<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/boyukbritanya.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>BÖYÜK BRİTANİYADA TƏHSİL ALMAQ İSTƏYƏNLƏRİN NƏZƏRİNƏ! 25 fevral, saat 15:00-da, Baku City Academy-də Böyük Britaniyada yerləşən "London South Bank" universitetinin təşkilatçılığı ilə Böyük Britaniyada təhsillə bağlı seminar baş
-                            tutacaqdır. Seminar universitetin Beynəlxalq Tələbələrlə iş departamentin meneceri Malcolm Davidson tərəfindən aparılacaqdır. Seminar tələbələrin Böyük Britaniyada təhsillə bağlı məlumat əldə etmələri məqsədi ilə təşkil olunmuşdur.
-                            QEYD: İştirak ÖDƏNİŞSİZ-dir. Son qeydiyyat tarixi: 24 fevral, saat 15:00 Seminarda iştirak üçün Eventi GOING etməyiniz, daha sonra aşağıdakı linkdəki formanı doldurmağınız və ya səhifənin ismarıc bölməsinə yazaraq qeydiyyatdan
-                            keçməyiniz xahiş olunur: <a href="https://forms.gle/LiBwKeKZTw7dTPd49">https://forms.gle/LiBwKeKZTw7dTPd49</a> <br><br> Yerlərin məhdud olması səbəbindən erkən qeydiyyatdan keçməyiniz xahiş olunur. Daha ətraflı məlumat əldə
-                            etmək üçün bizimlə əlaqə saxlaya və ya ofisimizə yaxınlaşa bilərsiniz. <br> 📧 info@bakucityacademy.com <br> 📞+994 12 595 65 05 <br> 📱+994 50 283 97 99
-                        </p>
-                        <p class="time"><i>19/02/2020</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              Conversation Club<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/conversationclub.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                İngilis dili biliklərin nə qədər yaxşıdır?🧐 Danışılan mövzuları
+                rahatlıqla anlayıb, fikrini sərbəst izah edə bilirsən❓ Cavabını
+                təxmin etdik 🔍 Hər kəsin özünəməxsus danışıq tərzi olduğundan
+                çox vaxt digərlərini anlamaqda çətinlik çəkirik. Bəs bu
+                çətinliyi aradan qaldırmağa nə deyirsən, Dostum?😉 Sizə ingilis
+                dili biliyinizi, ən əsası da danışıq və eşitmək qabiliyyətinizi
+                inkişaf etdirmək üçün AEGEE-Bakının "Language & Culture" İşçi
+                Qrupunun təşkilatçılığı ilə "English Conversation"a dəvət edirik
+                🤩 <br />
+                📆 29.02.2020 <br />
+                🕑: 12:00 <br />
+                📍: DataSoCool ( Dədə Qorqud parkının arxası, Univerium tələbə
+                yataqxanasının yanı, 37 Bakıxanov) <br />
+                🔗: Qeydiyyat linki:
+                <a href="https://forms.gle/5owfXsuh5pHwXU749"
+                  >https://forms.gle/5owfXsuh5pHwXU749</a
+                >
+                <br />
+                İştirak <b>ÖDƏNİŞSİZDİR</b> <br />
+                Qatılmaq üçün minimal səviyyə: <i>Pre-Intermediate</i>
+              </p>
+              <p class="time"><i>28/02/2020</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">WeekenDate<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/weekend.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>Gəlin birlikdə tətilimizin son şənbə gününü daha əyləncəli və maraqlı şəkildə keçirdək!! <br> 15 fevral, Apartment 9 Anti kafesində görüşənədək <br><br> Qeydiyyat linki: <a href="https://docs.google.com/forms/d/e/1FAIpQLSeRItPnjDBMKMwhVyAbIZxxFMzsSX4DJaz8n_U0KO7QD6OVKg/viewform">https://docs.google.com/forms/d/e/1FAIpQLSeRItPnjDBMKMwhVyAbIZxxFMzsSX4DJaz8n_U0KO7QD6OVKg/viewform</a>
-                        </p>
-                        <p class="time"><i>12/02/2020</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              Joker Party<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/jokerparty.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                We are very happy to announce that students who are AEGEE-Bakı
+                members will get a special discount for the standard tickets!
+                The Four Group will serve the students to entertain at upcoming
+                party in a way that they've never done! Cannot wait more?! So,
+                come and pick your tickets up for party to chill and energize!
+                Remember, everyone needs energy, but you deserve more!
+                <br /><br />
+                For MORE INFO contact: instagram.com/slhzdelcn
+              </p>
+              <p class="time"><i>25/02/2020</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-
-
-
-
-
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">Sheki 2020<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/sheki.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>Əziz Gənclər! AEGEE-Bakı sizlərə unudulmaz anlarla dolu həftəsonu yaşatmaq üçün Winter Camp⛺❄ adlı düşərgəsinə dəvət edir. Layihən vətənimizin ən qədim və dilbər guşələrindən olan Şəki şəhərində baş tutacaqdır. Bizimlə keçirəcəyiniz
-                            bu 2 gün ərzində sizi nələr gözləyir? <br> • Şəki-Bakı-Şəki transport 🚍 <br> • Hosteldə gecələmə🏕 <br> • Şəhərin tarixi məkanlarına giriş 🕰 <br> • Gündə 3× qidalanma ☕🥪 və sözsüz ki, şən və maraqlı qrup ilə maraqlı anlar
-                            🤩 <br><br> Əgər siz də yeni insanlarla tanış olub vaxtınızı əyləncəli şəkildə keçirmək istəyirsinizsə, AEGEE-Bakının sizə verdiyi bu fürsəti qaçırmayın!💫 <br> 🔸️Vaxt: 22.02-23.02 <br>🔹️Məkan: Şəki şəhəri <br>🔸️Ödəniş:
-                            ₼55 <br><br>❗Son müraciət tarixi: 15.02.2020 <br><br>🔺️Qeydiyyat linki: <a href="https://docs.google.com/forms/d/1uryZnADXBsDcDnOv8iAYFY77q8NdaZfOTY9JfPRlOqQ/edit">https://docs.google.com/forms/d/1uryZnADXBsDcDnOv8iAYFY77q8NdaZfOTY9JfPRlOqQ/edit</a>
-                        </p>
-                        <p class="time"><i>08/02/2020</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              Böyük Britaniya<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/boyukbritanya.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                BÖYÜK BRİTANİYADA TƏHSİL ALMAQ İSTƏYƏNLƏRİN NƏZƏRİNƏ! 25 fevral,
+                saat 15:00-da, Baku City Academy-də Böyük Britaniyada yerləşən
+                "London South Bank" universitetinin təşkilatçılığı ilə Böyük
+                Britaniyada təhsillə bağlı seminar baş tutacaqdır. Seminar
+                universitetin Beynəlxalq Tələbələrlə iş departamentin meneceri
+                Malcolm Davidson tərəfindən aparılacaqdır. Seminar tələbələrin
+                Böyük Britaniyada təhsillə bağlı məlumat əldə etmələri məqsədi
+                ilə təşkil olunmuşdur. QEYD: İştirak ÖDƏNİŞSİZ-dir. Son
+                qeydiyyat tarixi: 24 fevral, saat 15:00 Seminarda iştirak üçün
+                Eventi GOING etməyiniz, daha sonra aşağıdakı linkdəki formanı
+                doldurmağınız və ya səhifənin ismarıc bölməsinə yazaraq
+                qeydiyyatdan keçməyiniz xahiş olunur:
+                <a href="https://forms.gle/LiBwKeKZTw7dTPd49"
+                  >https://forms.gle/LiBwKeKZTw7dTPd49</a
+                >
+                <br /><br />
+                Yerlərin məhdud olması səbəbindən erkən qeydiyyatdan keçməyiniz
+                xahiş olunur. Daha ətraflı məlumat əldə etmək üçün bizimlə əlaqə
+                saxlaya və ya ofisimizə yaxınlaşa bilərsiniz. <br />
+                📧 info@bakucityacademy.com <br />
+                📞+994 12 595 65 05 <br />
+                📱+994 50 283 97 99
+              </p>
+              <p class="time"><i>19/02/2020</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-
-
-
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">Baku City Academy Scholarship<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/scholarship.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>
-                            Xaricdə təhsil almaq istəyirsən, lakin bu barədə məlumatsızsan? Nəyi necə etmək barədə düşünürsən? O zaman xaricdə təhsil üzrə yetərincə gəncə xəyalını gerçəkləşdirməyə yardım etmiş və bu sahədə kifayət qədər təcrübəsi olan Baku City Academy sizlərə "Study
-                            in Europe with Scholarship" adlı tədbirində sizin sözügedən mövzu ilə əlaqədar suallarınıza cavab tapmaqda köməklik göstərəcəkdir. Məhz AEGEE- Bakı olaraq əsas məqsədimiz gənclərin inkişafı, onların Avropaya inteqrasiyasına
-                            dəstək olmaqdır. Bu səbəbdən dolayı xaricdə təqaüdlə təhsil sizələrə gələcək planlarınızda çox yardımçı olacaqdır. <br><br> • Tarix: 08.02 Saat: 12:00 <br> Məkan: Baky City Academy (Azərbaycan prospekti
-                            23, Daxili İşlər Nazirliyinin yanı) <br> • Qeydiyyat linki:
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeGcUjj_mj7OMaw-Qq7sAYXkH_dsPJ20AxzGI0MQzX8FFJ4Vw/viewform">https://docs.google.com/forms/d/e/1FAIpQLSeGcUjj_mj7OMaw-Qq7sAYXkH_dsPJ20AxzGI0MQzX8FFJ4Vw/viewform</a>
-                        </p>
-                        <p class="time"><i>03/02/2020</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              WeekenDate<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/weekend.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Gəlin birlikdə tətilimizin son şənbə gününü daha əyləncəli və
+                maraqlı şəkildə keçirdək!! <br />
+                15 fevral, Apartment 9 Anti kafesində görüşənədək <br /><br />
+                Qeydiyyat linki:
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSeRItPnjDBMKMwhVyAbIZxxFMzsSX4DJaz8n_U0KO7QD6OVKg/viewform"
+                  >https://docs.google.com/forms/d/e/1FAIpQLSeRItPnjDBMKMwhVyAbIZxxFMzsSX4DJaz8n_U0KO7QD6OVKg/viewform</a
+                >
+              </p>
+              <p class="time"><i>12/02/2020</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">Info Session at ADA University<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/infosession.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>
-                            Both for ADA University Students and Students from other Universities <br> • Have you been planning on travelling around the continent and meeting new friends? <br>• Can you imagine yourself taking part in shaping our future
-                            together? If your answer to any of the questions above is ‘YES!’, you should definitely consider becoming a member of AEGEE! AEGEE is one of Europe’s biggest interdisciplinary student organisations. As a non-governmental, politically
-                            independent, and non-profit organisation AEGEE is open to students and young people from all faculties and disciplines. Founded in 1985 in Paris, today AEGEE has grown to a Network of 13000 AEGEEans, present in 161 cities in
-                            40 countries all over Europe. As a member, you can: Become part of a community of young Europeans Join local events and meetings Get involved in the work of international Working Groups and projects. 💫Take part in shaping
-                            the future of Europe! <br><br>💫Come and Join Us if You want to know further about AEGEE-Bakı AEGEE-Bakı Infosession will be held in 📍ADA University Majlis Room, on 3rd of Febuary at 12:55 <br><br> Registration Link: <a href=" https://docs.google.com/forms/d/e/1FAIpQLSe0EgZ_IjkFS_oav7r2FgPThGmN67z98zZBESRQThKCK6MgCw/viewform"> https://docs.google.com/forms/d/e/1FAIpQLSe0EgZ_IjkFS_oav7r2FgPThGmN67z98zZBESRQThKCK6MgCw/viewform</a>                            <br>❗ DEADLINE: 01.02.2020
-                        </p>
-                        <p class="time"><i>28/02/2020</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              Sheki 2020<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/sheki.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Əziz Gənclər! AEGEE-Bakı sizlərə unudulmaz anlarla dolu
+                həftəsonu yaşatmaq üçün Winter Camp⛺❄ adlı düşərgəsinə dəvət
+                edir. Layihən vətənimizin ən qədim və dilbər guşələrindən olan
+                Şəki şəhərində baş tutacaqdır. Bizimlə keçirəcəyiniz bu 2 gün
+                ərzində sizi nələr gözləyir? <br />
+                • Şəki-Bakı-Şəki transport 🚍 <br />
+                • Hosteldə gecələmə🏕 <br />
+                • Şəhərin tarixi məkanlarına giriş 🕰 <br />
+                • Gündə 3× qidalanma ☕🥪 və sözsüz ki, şən və maraqlı qrup ilə
+                maraqlı anlar 🤩 <br /><br />
+                Əgər siz də yeni insanlarla tanış olub vaxtınızı əyləncəli
+                şəkildə keçirmək istəyirsinizsə, AEGEE-Bakının sizə verdiyi bu
+                fürsəti qaçırmayın!💫 <br />
+                🔸️Vaxt: 22.02-23.02 <br />🔹️Məkan: Şəki şəhəri
+                <br />🔸️Ödəniş: ₼55 <br /><br />❗Son müraciət tarixi:
+                15.02.2020 <br /><br />🔺️Qeydiyyat linki:
+                <a
+                  href="https://docs.google.com/forms/d/1uryZnADXBsDcDnOv8iAYFY77q8NdaZfOTY9JfPRlOqQ/edit"
+                  >https://docs.google.com/forms/d/1uryZnADXBsDcDnOv8iAYFY77q8NdaZfOTY9JfPRlOqQ/edit</a
+                >
+              </p>
+              <p class="time"><i>08/02/2020</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">INFA2020<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/infa2020.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>INFA2020: FEEL THE POWER OF FLAME🔥🔥🔥 Have you ever celebrated the coming of spring or the awakening of nature? Are you ready to dive into the most colorful and delicious holiday? WARNING: You can put on additional 5kg during
-                            this holiday😋 This year AEGEE-Bakı has prepared for you the most interesting event for celebration of the Nowruz holiday. Two cities and lots of activities will be waiting for you during this unforgettable adventure!✨ You
-                            may ask: “Why INFA?” So, this celebration is not like others, because here you can literally feel the warmth. This festival has a great history and lots of traditions. And this year, we want to share with YOU our holiday and
-                            traditions! A lot of new feelings and AEGEE-Spirit is waiting for you here!🕺🏻💃🏻 <br> <br>We offer you: <br>🛌Accommodation <br>🥪2 meals a day and snacks <br>📚Workshops <br>🏞City Tour (even two cities) <br>🚌Local transportation
-                            <br>🍃Learning Nowruz traditions 🏛Museum tours <br>🔥Trip to the Ateshgah <br>🌼Visiting Natural Reserve <br>🐎Horse riding <br>😋Lots of shakarbura and pakhlava (we promise, you will like them) <br>💃🏻Learning national dances
-                            and many many other activities!!! <br> <br>Celebrate this Nowruz with AEGEE-Bakı and FEEL THE POWER OF FLAME!💥 <br>🔗Application link:
-                            <a href="https://my.aegee.eu/events/infa2019 ">https://my.aegee.eu/events/infa2019 </a> <br> ⏳DEADLINE: 20th of February, 2020
-                        </p>
-                        <p class="time"><i>23/01/2020</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              Baku City Academy Scholarship<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/scholarship.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Xaricdə təhsil almaq istəyirsən, lakin bu barədə məlumatsızsan?
+                Nəyi necə etmək barədə düşünürsən? O zaman xaricdə təhsil üzrə
+                yetərincə gəncə xəyalını gerçəkləşdirməyə yardım etmiş və bu
+                sahədə kifayət qədər təcrübəsi olan Baku City Academy sizlərə
+                "Study in Europe with Scholarship" adlı tədbirində sizin
+                sözügedən mövzu ilə əlaqədar suallarınıza cavab tapmaqda
+                köməklik göstərəcəkdir. Məhz AEGEE- Bakı olaraq əsas məqsədimiz
+                gənclərin inkişafı, onların Avropaya inteqrasiyasına dəstək
+                olmaqdır. Bu səbəbdən dolayı xaricdə təqaüdlə təhsil sizələrə
+                gələcək planlarınızda çox yardımçı olacaqdır. <br /><br />
+                • Tarix: 08.02 Saat: 12:00 <br />
+                Məkan: Baky City Academy (Azərbaycan prospekti 23, Daxili İşlər
+                Nazirliyinin yanı) <br />
+                • Qeydiyyat linki:
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSeGcUjj_mj7OMaw-Qq7sAYXkH_dsPJ20AxzGI0MQzX8FFJ4Vw/viewform"
+                  >https://docs.google.com/forms/d/e/1FAIpQLSeGcUjj_mj7OMaw-Qq7sAYXkH_dsPJ20AxzGI0MQzX8FFJ4Vw/viewform</a
+                >
+              </p>
+              <p class="time"><i>03/02/2020</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">I.D.E.A <span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/nargizxanim.jpeg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>Əhatəmiz, bir çoxumuza təsir edən əsas amillərdən biridir. Ətrafımızdakı insanlar, baş verən hadisələr bizim seçimlərimizə, o cümlədən məqsədlərimizin qoyulmasına təsir göstərir. İnsan məqsədinə layiq olmaq üçün bir sıra mərhələlərdən
-                            keçir və bu zaman müəyyən maneələrlə qarşılaşır. Biz bu və ya digər səbəblərə görə məqsədlərimizdən yayınmamalı, onların gerçəkləşməsi üçün çalışmalıyıq. Bu zaman ilk növbədə nail olmaq üçün düzgün məqsədi qarşımıza qoymalıyıq.
-                            Gənclərə məqsədlərin düzgün qoyulması və yaşadığımız ətraf mühitin seçimimizə olan təsirini izah etmək üçün psixoloq Nərgiz Hüseynova gənclərimizə bu mövzuda I.D.E.A.(Identify, Develop, Evaluate Aim) təlimini keçəcəkdir. İlk
-                            öncə əhatəmizi müəyyənləşdirərək onun təsirini və bizə mənfi təsir göstərən insanlar barədə müzakirə aparacağıq. Daha sonra düzgün məqsədin qoyulması və bu mövzu ətrafında müzakirələrlə davam edəcəyik. <br><br> Təlimdə sizi
-                            nələr gözləyir: <br> ✓Aktual mövzu barədə yeni biliklər, <br> ✓Maraqlı müzakirələr, <br> ✓Workshop, <br> ✓Kofe fasiləsi, <br> ✓Sertifikat <br> 📆Zaman: 27/01/2020, 14:00 <br> 📍Məkan: DataSoCool ( Dədə Qorqud parkının arxası,
-                            Univerium tələbə yataqxanasının yanı, 37 Bakıxanov) <br><br> ❗AEGEE-Bakı üzvləri üçün təlim ödənişsizdir. Qeyri-üzvlər üçün ödəniş <b> ₼3</b> təşkil edir. <br> ❗Qeydiyyat linki: <a href="https://docs.google.com/forms/d/e/1FAIpQLScxVJfyz4zSjO9Ex34by_glrK9yqDkcA0ywSuQ_AjsMZpuwTw/viewform?usp=sf_link">https://docs.google.com/forms/d/e/1FAIpQLScxVJfyz4zSjO9Ex34by_glrK9yqDkcA0ywSuQ_AjsMZpuwTw/viewform?usp=sf_link</a>                            <br><br> • #SQLÖyrən #DataÖyrən #PeşəkarDataTəhsili #DataKaryeranaBaşla #DataSoCool #AEGEEBakı #AEGEEFamily #AEGEESpirit
-                        </p>
-                        <p class="time"><i>23/01/2020</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              Info Session at ADA University<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/infosession.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Both for ADA University Students and Students from other
+                Universities <br />
+                • Have you been planning on travelling around the continent and
+                meeting new friends? <br />• Can you imagine yourself taking
+                part in shaping our future together? If your answer to any of
+                the questions above is ‘YES!’, you should definitely consider
+                becoming a member of AEGEE! AEGEE is one of Europe’s biggest
+                interdisciplinary student organisations. As a non-governmental,
+                politically independent, and non-profit organisation AEGEE is
+                open to students and young people from all faculties and
+                disciplines. Founded in 1985 in Paris, today AEGEE has grown to
+                a Network of 13000 AEGEEans, present in 161 cities in 40
+                countries all over Europe. As a member, you can: Become part of
+                a community of young Europeans Join local events and meetings
+                Get involved in the work of international Working Groups and
+                projects. 💫Take part in shaping the future of Europe!
+                <br /><br />💫Come and Join Us if You want to know further about
+                AEGEE-Bakı AEGEE-Bakı Infosession will be held in 📍ADA
+                University Majlis Room, on 3rd of Febuary at 12:55 <br /><br />
+                Registration Link:
+                <a
+                  href=" https://docs.google.com/forms/d/e/1FAIpQLSe0EgZ_IjkFS_oav7r2FgPThGmN67z98zZBESRQThKCK6MgCw/viewform"
+                  > https://docs.google.com/forms/d/e/1FAIpQLSe0EgZ_IjkFS_oav7r2FgPThGmN67z98zZBESRQThKCK6MgCw/viewform</a
+                >
+                <br />❗ DEADLINE: 01.02.2020
+              </p>
+              <p class="time"><i>28/02/2020</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">Let's Get Rid of Exams<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/anticafe.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>Bir çoxumuz üçün Yanvar ayı dedikdə universitet daxili imtahanlar📝 yada düşür. Orta statistik tələbə üçün isə bu bir ay boyunca stress😥 deməkdir. AEGEE-Bakı komandası olaraq sizləri daha əyləncəli şəkildə vaxt keçirmək və stressdən
-                            uzaqlaşmaq üçün "Let's get rid of exams" adlı şəbəkələşmə gününə dəvət edirik🤩💥 <br> <br> Tarix: 25.01|16:00 <br>Məkan: Concept Anti cafe(Tarqovı filialı) Gəlin birlikdə əylənərək AEGEE ruhunu daha yaxından hiss edək!💫 <br>Qeydiyyat
-                            linki:
-                            <a href="https://forms.gle/fkUCFfkRdFEVdJ7i7">https://forms.gle/fkUCFfkRdFEVdJ7i7</a>
-                        </p>
-                        <p class="time"><i>22/01/2020</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              INFA2020<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/infa2020.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                INFA2020: FEEL THE POWER OF FLAME🔥🔥🔥 Have you ever celebrated
+                the coming of spring or the awakening of nature? Are you ready
+                to dive into the most colorful and delicious holiday? WARNING:
+                You can put on additional 5kg during this holiday😋 This year
+                AEGEE-Bakı has prepared for you the most interesting event for
+                celebration of the Nowruz holiday. Two cities and lots of
+                activities will be waiting for you during this unforgettable
+                adventure!✨ You may ask: “Why INFA?” So, this celebration is
+                not like others, because here you can literally feel the warmth.
+                This festival has a great history and lots of traditions. And
+                this year, we want to share with YOU our holiday and traditions!
+                A lot of new feelings and AEGEE-Spirit is waiting for you
+                here!🕺🏻💃🏻 <br />
+                <br />We offer you: <br />🛌Accommodation <br />🥪2 meals a day
+                and snacks <br />📚Workshops <br />🏞City Tour (even two cities)
+                <br />🚌Local transportation <br />🍃Learning Nowruz traditions
+                🏛Museum tours <br />🔥Trip to the Ateshgah <br />🌼Visiting
+                Natural Reserve <br />🐎Horse riding <br />😋Lots of shakarbura
+                and pakhlava (we promise, you will like them) <br />💃🏻Learning
+                national dances and many many other activities!!! <br />
+                <br />Celebrate this Nowruz with AEGEE-Bakı and FEEL THE POWER
+                OF FLAME!💥 <br />🔗Application link:
+                <a href="https://my.aegee.eu/events/infa2019 "
+                  >https://my.aegee.eu/events/infa2019
+                </a>
+                <br />
+                ⏳DEADLINE: 20th of February, 2020
+              </p>
+              <p class="time"><i>23/01/2020</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">Erasmus<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/erasmus.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>Dəyərli Gənclər, Avropa Tələbələr Forumunun əsas məqsədi gənclərlə sərfəli və daha rahat yollarla Avropanı kəşf etməyi təmin etməkdir. Bundan əlavə Avropa Komissiyasının maliyyələşdirdiyi bir sıra proqramlar mövcuddur ki, Erasmus+
-                            və ESC da bura sıraya daxildir. Bu günlərdə bir çox gənci maraqlandıran mözvü barədə sözügedən sahədə fəaliyyət göstərən eyni zamanda tədbirin təşkilində əməkdaşımız olan <b> @sdgt.csyo</b> sizlərə ətraflı məlumat verəcəkdir.
-                            <br> <br> 📍Məkan: Caspian Plaza /2ci mərtəbə IB Club <br> 📆 18.01.2020 / Saat 12:00 <br> ❗Son müraciət tarixi: 18.01.2020 <br> Qeydiyyat linki: <a href=" https://docs.google.com/forms/d/e/1FAIpQLScT5HBV_larP6C2hvyM_-YaSg236qPUl-ditFvA6uHKbIA6uA/viewform?usp=sf_link"> https://docs.google.com/forms/d/e/1FAIpQLScT5HBV_larP6C2hvyM_-YaSg236qPUl-ditFvA6uHKbIA6uA/viewform?usp=sf_link</a>
-                        </p>
-                        <p class="time"><i>13/01/2020</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              I.D.E.A
+              <span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/nargizxanim.jpeg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Əhatəmiz, bir çoxumuza təsir edən əsas amillərdən biridir.
+                Ətrafımızdakı insanlar, baş verən hadisələr bizim seçimlərimizə,
+                o cümlədən məqsədlərimizin qoyulmasına təsir göstərir. İnsan
+                məqsədinə layiq olmaq üçün bir sıra mərhələlərdən keçir və bu
+                zaman müəyyən maneələrlə qarşılaşır. Biz bu və ya digər
+                səbəblərə görə məqsədlərimizdən yayınmamalı, onların
+                gerçəkləşməsi üçün çalışmalıyıq. Bu zaman ilk növbədə nail olmaq
+                üçün düzgün məqsədi qarşımıza qoymalıyıq. Gənclərə məqsədlərin
+                düzgün qoyulması və yaşadığımız ətraf mühitin seçimimizə olan
+                təsirini izah etmək üçün psixoloq Nərgiz Hüseynova gənclərimizə
+                bu mövzuda I.D.E.A.(Identify, Develop, Evaluate Aim) təlimini
+                keçəcəkdir. İlk öncə əhatəmizi müəyyənləşdirərək onun təsirini
+                və bizə mənfi təsir göstərən insanlar barədə müzakirə
+                aparacağıq. Daha sonra düzgün məqsədin qoyulması və bu mövzu
+                ətrafında müzakirələrlə davam edəcəyik. <br /><br />
+                Təlimdə sizi nələr gözləyir: <br />
+                ✓Aktual mövzu barədə yeni biliklər, <br />
+                ✓Maraqlı müzakirələr, <br />
+                ✓Workshop, <br />
+                ✓Kofe fasiləsi, <br />
+                ✓Sertifikat <br />
+                📆Zaman: 27/01/2020, 14:00 <br />
+                📍Məkan: DataSoCool ( Dədə Qorqud parkının arxası, Univerium
+                tələbə yataqxanasının yanı, 37 Bakıxanov) <br /><br />
+                ❗AEGEE-Bakı üzvləri üçün təlim ödənişsizdir. Qeyri-üzvlər üçün
+                ödəniş <b> ₼3</b> təşkil edir. <br />
+                ❗Qeydiyyat linki:
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLScxVJfyz4zSjO9Ex34by_glrK9yqDkcA0ywSuQ_AjsMZpuwTw/viewform?usp=sf_link"
+                  >https://docs.google.com/forms/d/e/1FAIpQLScxVJfyz4zSjO9Ex34by_glrK9yqDkcA0ywSuQ_AjsMZpuwTw/viewform?usp=sf_link</a
+                >
+                <br /><br />
+                • #SQLÖyrən #DataÖyrən #PeşəkarDataTəhsili #DataKaryeranaBaşla
+                #DataSoCool #AEGEEBakı #AEGEEFamily #AEGEESpirit
+              </p>
+              <p class="time"><i>23/01/2020</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">OpenCall for Working Groups<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/opencall.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>Əziz AEGEEçilər, İşçi qruplarına müraciət açıq elan olunur! Aşağıda göstərilən işçi qruplarından birinə qoşulmaqla Siz:
-                            <br><br> ✓ Hazır ideyalarınızı bizimlə birgə həyata keçirmiş olacaqsınız;
-                            <br> ✓ Daha yaradıcı düşüncə imkanlarınızı inkişaf etdirmiş olacaqsınız;
-                            <br> ✓ Komanda ilə işləmə bacarığınızı formalaşdırmış olacaqsınız;
-                            <br> ✓ Layihənin təşkili və idarə olunması istiqamətində bilik və bacarıqlarınızı formalaşdıra bilərsiniz;
-                            <br> ✓ Ən əsası cəmiyyət və özünüz üçün töhfə vermiş olacaqsınız. <br><br> ❗ Son müraciət tarixi: 20.01.20
-                            <br><br>Aşağıdakı işçi qruplarından birinə müraciət edə bilərsiniz: <br>•Civic education WG <br>•Sport & Entertainment WG
-                            <br> •Language & Culture WG <br>•Environmental actions WG <br>• Equal Rights WG <br>•European Citizenship WG <br>•Youth Development WG
-                            <br><br>İşçi qruplarına seçim müsahibə yolu ilə aparılacaq. <br><br>• Müraciət etmək üçün aşağıdakı qeydiyyat formuna daxil olun: <a href="https://docs.google.com/forms/d/e/1FAIpQLSeZ-9IBj7P5azvwImTpkBkAP6vLa6QCgItcWrWPy2olJeK8RA/viewform?usp=sf_link">https://docs.google.com/forms/d/e/1FAIpQLSeZ-9IBj7P5azvwImTpkBkAP6vLa6QCgItcWrWPy2olJeK8RA/viewform?usp=sf_link</a>
-
-                        </p>
-                        <p class="time"><i>01/01/2020</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              Let's Get Rid of Exams<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/anticafe.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Bir çoxumuz üçün Yanvar ayı dedikdə universitet daxili
+                imtahanlar📝 yada düşür. Orta statistik tələbə üçün isə bu bir
+                ay boyunca stress😥 deməkdir. AEGEE-Bakı komandası olaraq
+                sizləri daha əyləncəli şəkildə vaxt keçirmək və stressdən
+                uzaqlaşmaq üçün "Let's get rid of exams" adlı şəbəkələşmə gününə
+                dəvət edirik🤩💥 <br />
+                <br />
+                Tarix: 25.01|16:00 <br />Məkan: Concept Anti cafe(Tarqovı
+                filialı) Gəlin birlikdə əylənərək AEGEE ruhunu daha yaxından
+                hiss edək!💫 <br />Qeydiyyat linki:
+                <a href="https://forms.gle/fkUCFfkRdFEVdJ7i7"
+                  >https://forms.gle/fkUCFfkRdFEVdJ7i7</a
+                >
+              </p>
+              <p class="time"><i>22/01/2020</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">New Year Party<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/yakamoz.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>Əziz Gənclər! Artıq daha bir il geridə qalır və bu münasibətlə birlikdə köhnə ili ötürüb yeni ilə qədəmlərimizi qoymaq üçün AEGEE-Bakının Yeni il şənliyinə Sizləri dəvət edirik! 2019un son günlərindən birinin möhtəşəm, əyləncə
-                            dolu və unudulmaz olmasını istəyirsinizsə, şənliyimizə biletləri əldə etməyi unutmayın! AEGEE ruhunu hiss etmək vaxtıdır💫
-                            <br><br> ➡️Tarix: 28.12.2019, 18:00-00:00 <br>➡️Məkan: Yakamoz (Amay Ticarət Mərkəzi, 8-ci mərtəbə) <br>➡️Dress code: Santa papağı🎅🏻
-                            <br> <br> Biletə daxildir:
-                            <br> ✅1. Dj
-                            <br> ✅2. Laser show
-                            <br> ✅3. Sürpriz oyunlar
-                            <br> ✅4. Fotosessiya
-                            <br> ✅5. Snack və spirtsiz içkilər 🔹️Biletin qiyməti: ₼15
-                            <br> <br> Qeydiyyat üçün son gün: 27.12.2019
-                            <br> <br> Qeydiyyatdan keçmək üçün aşağıdakı linkə daxil olun: <a href="https://docs.google.com/forms/d/e/1FAIpQLSc2kozvbcr01bk-X7_0rirqbvo7kXnhulgfzjY1D-_cqgWTDg/viewform?usp=sf_link">https://docs.google.com/forms/d/e/1FAIpQLSc2kozvbcr01bk-X7_0rirqbvo7kXnhulgfzjY1D-_cqgWTDg/viewform?usp=sf_link</a>
-                        </p>
-                        <p class="time"><i>21/01/2020</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              Erasmus<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/erasmus.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Dəyərli Gənclər, Avropa Tələbələr Forumunun əsas məqsədi
+                gənclərlə sərfəli və daha rahat yollarla Avropanı kəşf etməyi
+                təmin etməkdir. Bundan əlavə Avropa Komissiyasının
+                maliyyələşdirdiyi bir sıra proqramlar mövcuddur ki, Erasmus+ və
+                ESC da bura sıraya daxildir. Bu günlərdə bir çox gənci
+                maraqlandıran mözvü barədə sözügedən sahədə fəaliyyət göstərən
+                eyni zamanda tədbirin təşkilində əməkdaşımız olan
+                <b> @sdgt.csyo</b> sizlərə ətraflı məlumat verəcəkdir. <br />
+                <br />
+                📍Məkan: Caspian Plaza /2ci mərtəbə IB Club <br />
+                📆 18.01.2020 / Saat 12:00 <br />
+                ❗Son müraciət tarixi: 18.01.2020 <br />
+                Qeydiyyat linki:
+                <a
+                  href=" https://docs.google.com/forms/d/e/1FAIpQLScT5HBV_larP6C2hvyM_-YaSg236qPUl-ditFvA6uHKbIA6uA/viewform?usp=sf_link"
+                >
+                  https://docs.google.com/forms/d/e/1FAIpQLScT5HBV_larP6C2hvyM_-YaSg236qPUl-ditFvA6uHKbIA6uA/viewform?usp=sf_link</a
+                >
+              </p>
+              <p class="time"><i>13/01/2020</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">English Conversation <span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/engconver.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>How good is your English?🤨 Do you understand well,👍🏻 but feel uncomfortable while speaking👎🏻 because different people have different accents? Don't worry then😉 AEGEE-Bakı is going to solve that problem 🤩How?🤔By offering
-                            new interesting conversations!🕺🏻
-                            <br><br> When: 22.12.19 at 14:00
-                            <br> Where: Caspian Business Center, 2nd floor
-                            <br>Registration link: <a href="  https://forms.gle/6saMdSuYQe24U4cTA">  https://forms.gle/6saMdSuYQe24U4cTA</a>
-
-                        </p>
-                        <p class="time"><i>19/01/2020</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              OpenCall for Working Groups<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/opencall.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Əziz AEGEEçilər, İşçi qruplarına müraciət açıq elan olunur!
+                Aşağıda göstərilən işçi qruplarından birinə qoşulmaqla Siz:
+                <br /><br />
+                ✓ Hazır ideyalarınızı bizimlə birgə həyata keçirmiş olacaqsınız;
+                <br />
+                ✓ Daha yaradıcı düşüncə imkanlarınızı inkişaf etdirmiş
+                olacaqsınız; <br />
+                ✓ Komanda ilə işləmə bacarığınızı formalaşdırmış olacaqsınız;
+                <br />
+                ✓ Layihənin təşkili və idarə olunması istiqamətində bilik və
+                bacarıqlarınızı formalaşdıra bilərsiniz; <br />
+                ✓ Ən əsası cəmiyyət və özünüz üçün töhfə vermiş olacaqsınız.
+                <br /><br />
+                ❗ Son müraciət tarixi: 20.01.20 <br /><br />Aşağıdakı işçi
+                qruplarından birinə müraciət edə bilərsiniz: <br />•Civic
+                education WG <br />•Sport & Entertainment WG <br />
+                •Language & Culture WG <br />•Environmental actions WG <br />•
+                Equal Rights WG <br />•European Citizenship WG <br />•Youth
+                Development WG <br /><br />İşçi qruplarına seçim müsahibə yolu
+                ilə aparılacaq. <br /><br />• Müraciət etmək üçün aşağıdakı
+                qeydiyyat formuna daxil olun:
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSeZ-9IBj7P5azvwImTpkBkAP6vLa6QCgItcWrWPy2olJeK8RA/viewform?usp=sf_link"
+                  >https://docs.google.com/forms/d/e/1FAIpQLSeZ-9IBj7P5azvwImTpkBkAP6vLa6QCgItcWrWPy2olJeK8RA/viewform?usp=sf_link</a
+                >
+              </p>
+              <p class="time"><i>01/01/2020</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">Human Rights <span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/bineqedi.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>Əziz Gənclər, Yaşından, cinsindən, irqindən, dinindən asılı olmayaraq hər kəs bərabər hüquqlara malikdir. Hüquqlarımızı bilmək və tanıtmaq bizim ən əsas prinsiplərimizdəndir. Habelə, AEGEE-Bakı sözügedən mövzu barədə daha ətraflı
-                            şəkildə məlumatlandırmaq məqsədilə hər birinizi "Human Rights" adlı təlimə dəvət edir! Tədbirdə insan hüquqlarına dair geniş və faydalı məlumatlar veriləcək və mövzu ilə əlaqədar maraqlı workshoplar keçiriləcək <br><br> ➡ Tarix:
-                            15.12.2019/ 10:30
-                            <br> ➡️Məkan: Binəqədi Gənclər Evi
-                            <br>Gəlin həftə sonunu bizimlə birlikdə daha səmərəli və daha maraqlı keçirin! Təlimdə iştirak etmək üçün aşağıdakı linkə daxil olaraq qeydiyyatdan keçin: <a href="  https://forms.gle/k32HCBXhbm6hg1cN7">  https://forms.gle/k32HCBXhbm6hg1cN7</a>
-
-
-                        </p>
-                        <p class="time"><i>14/12/2019</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              New Year Party<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/yakamoz.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Əziz Gənclər! Artıq daha bir il geridə qalır və bu münasibətlə
+                birlikdə köhnə ili ötürüb yeni ilə qədəmlərimizi qoymaq üçün
+                AEGEE-Bakının Yeni il şənliyinə Sizləri dəvət edirik! 2019un son
+                günlərindən birinin möhtəşəm, əyləncə dolu və unudulmaz olmasını
+                istəyirsinizsə, şənliyimizə biletləri əldə etməyi unutmayın!
+                AEGEE ruhunu hiss etmək vaxtıdır💫 <br /><br />
+                ➡️Tarix: 28.12.2019, 18:00-00:00 <br />➡️Məkan: Yakamoz (Amay
+                Ticarət Mərkəzi, 8-ci mərtəbə) <br />➡️Dress code: Santa
+                papağı🎅🏻 <br />
+                <br />
+                Biletə daxildir: <br />
+                ✅1. Dj <br />
+                ✅2. Laser show <br />
+                ✅3. Sürpriz oyunlar <br />
+                ✅4. Fotosessiya <br />
+                ✅5. Snack və spirtsiz içkilər 🔹️Biletin qiyməti: ₼15 <br />
+                <br />
+                Qeydiyyat üçün son gün: 27.12.2019 <br />
+                <br />
+                Qeydiyyatdan keçmək üçün aşağıdakı linkə daxil olun:
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSc2kozvbcr01bk-X7_0rirqbvo7kXnhulgfzjY1D-_cqgWTDg/viewform?usp=sf_link"
+                  >https://docs.google.com/forms/d/e/1FAIpQLSc2kozvbcr01bk-X7_0rirqbvo7kXnhulgfzjY1D-_cqgWTDg/viewform?usp=sf_link</a
+                >
+              </p>
+              <p class="time"><i>21/01/2020</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">İstehlakçı Hüquqları <span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/istehlakci.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>Dəyərli gənclər, Sizi 23 noyabr, saat 11:00-da Sabunçu Gənclər Evində "Istehlakçı Hüquqları" mövzusunda keçiriləcək təlimə dəvət edirik! Təlimin təqdimatı aşağıdakı mövzularla bağlı olacaq: - Malda qüsur aşkar etdildikdə nə etmək
-                            lazımdır. Malın rəngi, forması, ölçüsü uyğun gəlmədikdə onu dəyişdirmək olarmı ? Mal almışam, qaytarmaq istəyirəm, amma kassa qəbzini itirmişəm. Bu zaman nə edə bilərəm? Sifariş verdiyimiz mal yolda yararsız vəziyyətə düşürsə,
-                            bu zaman məsuliyyət kimin üzərinə düşür ? Sizin bu tipli suallarınız yaranırsa təlimdə iştirak edərək suallarınıza cavab ala bilərsiniz Təlimçi: "İstehlakçı hüquqları" təliminin təlimçisi hüquqşünas Ülvi Əhmədovdur. O hal-hazırda
-                            "Avropa Hüquq Xidməti" şirkətində Hüquqşünas vəzifəsində çalışır. 3 illik praktiki fəaliyyəti ilə yanaşı bir çox yerli hüquqi layihələrin təşkilatçılarından olmuşdur. Həmçinin Əmək Qanunvericiliyi sahəsində təlimçi olaraq fəaliyyət
-                            göstərir. <br><br> Qeydiyyat üçün link: <a href="https://forms.gle/dY7oav1huVeL53qA9">https://forms.gle/dY7oav1huVeL53qA9</a>
-                            <br> Sabunçu Gənclər Evi ilə tərəfdaşlıq çərçivəsində
-
-
-                        </p>
-                        <p class="time"><i>12/11/2019</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              English Conversation
+              <span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/engconver.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                How good is your English?🤨 Do you understand well,👍🏻 but feel
+                uncomfortable while speaking👎🏻 because different people have
+                different accents? Don't worry then😉 AEGEE-Bakı is going to
+                solve that problem 🤩How?🤔By offering new interesting
+                conversations!🕺🏻 <br /><br />
+                When: 22.12.19 at 14:00 <br />
+                Where: Caspian Business Center, 2nd floor <br />Registration
+                link:
+                <a href="  https://forms.gle/6saMdSuYQe24U4cTA">
+                  https://forms.gle/6saMdSuYQe24U4cTA</a
+                >
+              </p>
+              <p class="time"><i>19/01/2020</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">Cv & Motivasiya məktubunun yazılması təlimi<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/vahidmesim.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>Yaşadığımız dövrdə xaricdə təhsil almaq və geniş karyera imkanı demək olar ki, hər bir gəncin məqsədinə çevrilmişdir. Bu məqsədə çatmaq üçün isə gənc nəsil çalışıb əlindən gələni əsirgəmir. Biz də bu yolda onlara öz töhfəmizi verərək
-                            xarici universitetlərə qəbul və uğurlu karyera yolunda ilk addımlarının atılması üçün ən vacib faktorlardan biri olan motivasiya məktubunun yazılması və CV hazırlanması ilə bağlı təlim təşkil etmək qərarına gəldik. Təlimimiz
-                            məşhur təlimçi Vahid Masimov tərəfindən keçiriləcək. Vahid Məsimov burada CV və motivasiya məktublarında diqqət yetirilən "qızıl nöqtələri" , sözügedən sahədə olan təcrübəsini Sizlərlə bölüşəcəkdir. Gəlin birlikdə əylənərək
-                            öyrənək! İctimaiyyətlə Əlaqələr
-                            <br><br> Məkan: Binəqədi Gənclər Evi
-                            <br> Tarix: 09/11/19 15:00
-                            <br> Qeydiyyat linki: <a href=" https://forms.gle/NmPTjHKChF4Kct8y8"> https://forms.gle/NmPTjHKChF4Kct8y8</a>
-
-                            <br> Son müraciət tarixi: 08/11/19, 20:00
-                            <br><br> Qeyd: Təlim başlamazdan 20 dəqiqə əvvəl təlimin keçiriləcəyi məkanda olmağınız xahiş olunur. Təlim tam ödənişsizdir.
-                            <br><br> #aegeefamily #aegeebaki #aegee #europe #cv #motivation #letter
-
-
-                        </p>
-                        <p class="time"><i>02/11/2019</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              Human Rights
+              <span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/bineqedi.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Əziz Gənclər, Yaşından, cinsindən, irqindən, dinindən asılı
+                olmayaraq hər kəs bərabər hüquqlara malikdir. Hüquqlarımızı
+                bilmək və tanıtmaq bizim ən əsas prinsiplərimizdəndir. Habelə,
+                AEGEE-Bakı sözügedən mövzu barədə daha ətraflı şəkildə
+                məlumatlandırmaq məqsədilə hər birinizi "Human Rights" adlı
+                təlimə dəvət edir! Tədbirdə insan hüquqlarına dair geniş və
+                faydalı məlumatlar veriləcək və mövzu ilə əlaqədar maraqlı
+                workshoplar keçiriləcək <br /><br />
+                ➡ Tarix: 15.12.2019/ 10:30 <br />
+                ➡️Məkan: Binəqədi Gənclər Evi <br />Gəlin həftə sonunu bizimlə
+                birlikdə daha səmərəli və daha maraqlı keçirin! Təlimdə iştirak
+                etmək üçün aşağıdakı linkə daxil olaraq qeydiyyatdan keçin:
+                <a href="  https://forms.gle/k32HCBXhbm6hg1cN7">
+                  https://forms.gle/k32HCBXhbm6hg1cN7</a
+                >
+              </p>
+              <p class="time"><i>14/12/2019</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">OpenCall For Trainers<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/vahidmesim.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>Təlimçilik sahəsində müəyyən qədər təcrübəlisiniz və ən əsası maraqlısınız? O zaman AEGEE-Bakının sizə təklif etdiyi bu şansı qaçırmayın. Layihəmizin məqsədi? Təlimçilik bacarığı və potensialı olan gənclərin seçilib onlarda bu
-                            xüsusiyyətin inkişaf etdirilməsinə dair treyninqlərin təşkili. Siz bu layihənin iştirakçısı olmaqla həm özünüzdə bu kimi xüsusiyyətləri inkişaf etdirməklə yanaşı, mütamadi olaraq AEGEE-Bakı'da vaxt aşırı seminar, workshop və
-                            bir sıra layihələr həyata keçirə bilərsiniz. Biz kimik? Fransanın Paris şəhərində fəaliyyət başlayıb, bütün Avropanı əhatə edən 240-dan artıq lokalları olan AEGEE-nin əsas məqsədi gənclərə Avropa təcrübəsini və innovasiyasını
-                            ötürmək, tolerantlığa nail olmaqdır. Bu gün ölkəmizdə gənc platformadan olan müxtəlif təşkilatlarla tanış ola bilərsiniz. AEGEE-i digərlərindən fərqlərindən cəhəti odur ki, biz gənclərə heç bir diskriminasiya və ya məhdudiyyət
-                            qoymadan ancaq onlar üçün çalışırıq. AEGEE tələbələrin və gəclərin inkişafını hədəfləmişdir, məhz buna görə də gənclərimizə müxtəlif mövzularda təlim və seminarlar keçə biləcək təlimçi bazası formalaşdırırıq. Əgər siz də Azərbaycan
-                            Gəncliyinin inkişafına öz töhfələrinizi yatırmaq istəyirsinizsə, bizim layihəyə qoşulun.
-                            <br><br> Qeydiyyat üçün link: <a href="https://docs.google.com/forms/d/e/1FAIpQLScpJeuH5_axhEJ-tjEqoZdp95Lmspa6wfPPsR-4i5zM5AIHwg/viewform">https://docs.google.com/forms/d/e/1FAIpQLScpJeuH5_axhEJ-tjEqoZdp95Lmspa6wfPPsR-4i5zM5AIHwg/viewform</a>
-                            <br><br> Son müraciət tarixi: 01.12.19
-
-                        </p>
-                        <p class="time"><i>25/10/2019</i></p>
-                    </div>
-
-                </div>
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              İstehlakçı Hüquqları
+              <span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/istehlakci.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Dəyərli gənclər, Sizi 23 noyabr, saat 11:00-da Sabunçu Gənclər
+                Evində "Istehlakçı Hüquqları" mövzusunda keçiriləcək təlimə
+                dəvət edirik! Təlimin təqdimatı aşağıdakı mövzularla bağlı
+                olacaq: - Malda qüsur aşkar etdildikdə nə etmək lazımdır. Malın
+                rəngi, forması, ölçüsü uyğun gəlmədikdə onu dəyişdirmək olarmı ?
+                Mal almışam, qaytarmaq istəyirəm, amma kassa qəbzini itirmişəm.
+                Bu zaman nə edə bilərəm? Sifariş verdiyimiz mal yolda yararsız
+                vəziyyətə düşürsə, bu zaman məsuliyyət kimin üzərinə düşür ?
+                Sizin bu tipli suallarınız yaranırsa təlimdə iştirak edərək
+                suallarınıza cavab ala bilərsiniz Təlimçi: "İstehlakçı
+                hüquqları" təliminin təlimçisi hüquqşünas Ülvi Əhmədovdur. O
+                hal-hazırda "Avropa Hüquq Xidməti" şirkətində Hüquqşünas
+                vəzifəsində çalışır. 3 illik praktiki fəaliyyəti ilə yanaşı bir
+                çox yerli hüquqi layihələrin təşkilatçılarından olmuşdur.
+                Həmçinin Əmək Qanunvericiliyi sahəsində təlimçi olaraq fəaliyyət
+                göstərir. <br /><br />
+                Qeydiyyat üçün link:
+                <a href="https://forms.gle/dY7oav1huVeL53qA9"
+                  >https://forms.gle/dY7oav1huVeL53qA9</a
+                >
+                <br />
+                Sabunçu Gənclər Evi ilə tərəfdaşlıq çərçivəsində
+              </p>
+              <p class="time"><i>12/11/2019</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
-        <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              Cv & Motivasiya məktubunun yazılması təlimi<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/vahidmesim.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Yaşadığımız dövrdə xaricdə təhsil almaq və geniş karyera imkanı
+                demək olar ki, hər bir gəncin məqsədinə çevrilmişdir. Bu məqsədə
+                çatmaq üçün isə gənc nəsil çalışıb əlindən gələni əsirgəmir. Biz
+                də bu yolda onlara öz töhfəmizi verərək xarici universitetlərə
+                qəbul və uğurlu karyera yolunda ilk addımlarının atılması üçün
+                ən vacib faktorlardan biri olan motivasiya məktubunun yazılması
+                və CV hazırlanması ilə bağlı təlim təşkil etmək qərarına gəldik.
+                Təlimimiz məşhur təlimçi Vahid Masimov tərəfindən keçiriləcək.
+                Vahid Məsimov burada CV və motivasiya məktublarında diqqət
+                yetirilən "qızıl nöqtələri" , sözügedən sahədə olan təcrübəsini
+                Sizlərlə bölüşəcəkdir. Gəlin birlikdə əylənərək öyrənək!
+                İctimaiyyətlə Əlaqələr <br /><br />
+                Məkan: Binəqədi Gənclər Evi <br />
+                Tarix: 09/11/19 15:00 <br />
+                Qeydiyyat linki:
+                <a href=" https://forms.gle/NmPTjHKChF4Kct8y8">
+                  https://forms.gle/NmPTjHKChF4Kct8y8</a
+                >
 
-
-                <div class="p-4 flex-1 flex flex-col">
-
-                    <h3 class="mb-4 text-2xl ">Kariyera Mərkəzi<span><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "></span></h3>
-                    <div class="mb-4 text-grey-darker text-sm flex-1 ">
-                        <img src="img/karieramerkezi.jpg" alt="" class="local-photo">
-                        <br><br>
-                        <br>
-                        <p>Bilirsinizmi insanların həftə boyu ən çox səbirsizliklə gözlədiyi an hansıdır? Təbii ki, bu Weekend'dir🤩 Bəs sizin artıq həftəsonu üçün planlarınız hazırdır? Yox? Elə isə dayanmadan səhifəmizin Biosunda yerləşən linkə daxil olub
-                            qeydiyyatdan keçin⬆️ Tədbirdə bizi nələr gözləyir?
-                            <br> AEGEE haqqında məlumat
-                            <br> Yeni idarə heyətilə tanışlıq
-                            <br> Energizer
-                            <br> Workshop
-                            <br> Coffee break
-                            <br> Bir sözlə unudulmaz anlar
-                            <br> •
-                            <br> •
-                            <br> • Yer: Gənclərin İnkişaf və Karyera Mərkəzi Vaxt: 27.10.19 // 13:45
-                            <br> Qeydiyyat linki: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfkWSzXsAGCNKw8Ds433LKSOWPDmFsWuC8t-eQ-t0xM3OgUiA/viewform?usp=sf_link">https://docs.google.com/forms/d/e/1FAIpQLSfkWSzXsAGCNKw8Ds433LKSOWPDmFsWuC8t-eQ-t0xM3OgUiA/viewform?usp=sf_link</a>
-                            <br> Qeydiyyat üçün son tarix: 26.10.19 // 20:00
-                            <br><br> ❗Tədbir üzvlər və qeyri üzvlər üçün təmamilə ödənişsizdir
-                            <br><br> #aegeefamily #aegeebaki #azerbaycan #azerbaijan #strongertogether #abc #course #joinus
-                        </p>
-                        <p class="time"><i>20/10/2019</i></p>
-                    </div>
-
-                </div>
+                <br />
+                Son müraciət tarixi: 08/11/19, 20:00 <br /><br />
+                Qeyd: Təlim başlamazdan 20 dəqiqə əvvəl təlimin keçiriləcəyi
+                məkanda olmağınız xahiş olunur. Təlim tam ödənişsizdir.
+                <br /><br />
+                #aegeefamily #aegeebaki #aegee #europe #cv #motivation #letter
+              </p>
+              <p class="time"><i>02/11/2019</i></p>
             </div>
+          </div>
         </div>
+      </div>
 
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              OpenCall For Trainers<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/vahidmesim.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Təlimçilik sahəsində müəyyən qədər təcrübəlisiniz və ən əsası
+                maraqlısınız? O zaman AEGEE-Bakının sizə təklif etdiyi bu şansı
+                qaçırmayın. Layihəmizin məqsədi? Təlimçilik bacarığı və
+                potensialı olan gənclərin seçilib onlarda bu xüsusiyyətin
+                inkişaf etdirilməsinə dair treyninqlərin təşkili. Siz bu
+                layihənin iştirakçısı olmaqla həm özünüzdə bu kimi
+                xüsusiyyətləri inkişaf etdirməklə yanaşı, mütamadi olaraq
+                AEGEE-Bakı'da vaxt aşırı seminar, workshop və bir sıra layihələr
+                həyata keçirə bilərsiniz. Biz kimik? Fransanın Paris şəhərində
+                fəaliyyət başlayıb, bütün Avropanı əhatə edən 240-dan artıq
+                lokalları olan AEGEE-nin əsas məqsədi gənclərə Avropa
+                təcrübəsini və innovasiyasını ötürmək, tolerantlığa nail
+                olmaqdır. Bu gün ölkəmizdə gənc platformadan olan müxtəlif
+                təşkilatlarla tanış ola bilərsiniz. AEGEE-i digərlərindən
+                fərqlərindən cəhəti odur ki, biz gənclərə heç bir diskriminasiya
+                və ya məhdudiyyət qoymadan ancaq onlar üçün çalışırıq. AEGEE
+                tələbələrin və gəclərin inkişafını hədəfləmişdir, məhz buna görə
+                də gənclərimizə müxtəlif mövzularda təlim və seminarlar keçə
+                biləcək təlimçi bazası formalaşdırırıq. Əgər siz də Azərbaycan
+                Gəncliyinin inkişafına öz töhfələrinizi yatırmaq istəyirsinizsə,
+                bizim layihəyə qoşulun. <br /><br />
+                Qeydiyyat üçün link:
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLScpJeuH5_axhEJ-tjEqoZdp95Lmspa6wfPPsR-4i5zM5AIHwg/viewform"
+                  >https://docs.google.com/forms/d/e/1FAIpQLScpJeuH5_axhEJ-tjEqoZdp95Lmspa6wfPPsR-4i5zM5AIHwg/viewform</a
+                >
+                <br /><br />
+                Son müraciət tarixi: 01.12.19
+              </p>
+              <p class="time"><i>25/10/2019</i></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+        <div
+          class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
+        >
+          <div class="p-4 flex-1 flex flex-col">
+            <h3 class="mb-4 text-2xl">
+              Kariyera Mərkəzi<span
+                ><img src="img/aegee1.png" width="100px" class="ml-5" alt=" "
+              /></span>
+            </h3>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <img src="img/karieramerkezi.jpg" alt="" class="local-photo" />
+              <br /><br />
+              <br />
+              <p>
+                Bilirsinizmi insanların həftə boyu ən çox səbirsizliklə
+                gözlədiyi an hansıdır? Təbii ki, bu Weekend'dir🤩 Bəs sizin
+                artıq həftəsonu üçün planlarınız hazırdır? Yox? Elə isə
+                dayanmadan səhifəmizin Biosunda yerləşən linkə daxil olub
+                qeydiyyatdan keçin⬆️ Tədbirdə bizi nələr gözləyir? <br />
+                AEGEE haqqında məlumat <br />
+                Yeni idarə heyətilə tanışlıq <br />
+                Energizer <br />
+                Workshop <br />
+                Coffee break <br />
+                Bir sözlə unudulmaz anlar <br />
+                • <br />
+                • <br />
+                • Yer: Gənclərin İnkişaf və Karyera Mərkəzi Vaxt: 27.10.19 //
+                13:45 <br />
+                Qeydiyyat linki:
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSfkWSzXsAGCNKw8Ds433LKSOWPDmFsWuC8t-eQ-t0xM3OgUiA/viewform?usp=sf_link"
+                  >https://docs.google.com/forms/d/e/1FAIpQLSfkWSzXsAGCNKw8Ds433LKSOWPDmFsWuC8t-eQ-t0xM3OgUiA/viewform?usp=sf_link</a
+                >
+                <br />
+                Qeydiyyat üçün son tarix: 26.10.19 // 20:00 <br /><br />
+                ❗Tədbir üzvlər və qeyri üzvlər üçün təmamilə ödənişsizdir
+                <br /><br />
+                #aegeefamily #aegeebaki #azerbaycan #azerbaijan
+                #strongertogether #abc #course #joinus
+              </p>
+              <p class="time"><i>20/10/2019</i></p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div id="son">
-        <p>© AEGEE-Bakı 2020 | Created by ESWeb</p>
+      <p>© AEGEE-Bakı 2020 | Created by ESWeb</p>
     </div>
 
     <i class="back-to-top fas fa-chevron-circle-up"></i>
 
     <script>
-        const backToTop = document.querySelector(".back-to-top");
-        window.addEventListener("scroll", scrollFunction);
+      const backToTop = document.querySelector(".back-to-top");
+      window.addEventListener("scroll", scrollFunction);
 
-        function scrollFunction() {
-            if (window.pageYOffset > 400) {
-                if (backToTop.classList.contains("btnEntrance")) {
-                    backToTop.classList.remove("btnExit");
-                    backToTop.classList.add("btnEntrance");
-
-                }
-                backToTop.style.display = "block";
-
-            } else {
-                if (backToTop.classList.contains("btnEntrance")) {
-                    backToTop.classList.remove("btnEntrance");
-                    backToTop.classList.add("btnExit");
-
-                }
-                backToTop.style.display = "none";
-            }
+      function scrollFunction() {
+        if (window.pageYOffset > 400) {
+          if (backToTop.classList.contains("btnEntrance")) {
+            backToTop.classList.remove("btnExit");
+            backToTop.classList.add("btnEntrance");
+          }
+          backToTop.style.display = "block";
+        } else {
+          if (backToTop.classList.contains("btnEntrance")) {
+            backToTop.classList.remove("btnEntrance");
+            backToTop.classList.add("btnExit");
+          }
+          backToTop.style.display = "none";
         }
+      }
 
-        backToTop.addEventListener('click', backtotop);
+      backToTop.addEventListener("click", backtotop);
 
-        function backtotop() {
-
-            window.scrollTo(0, 0);
-        }
+      function backtotop() {
+        window.scrollTo(0, 0);
+      }
     </script>
-</body>
-
+  </body>
 </html>
